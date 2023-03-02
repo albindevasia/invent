@@ -1,8 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
 // import { ToastrService } from 'ngx-toastr/public_api';
-import { TableService } from '../services/table.service';
+import {  TableService } from '../services/table.service';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +13,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DashboardComponent  {
 editingUser: any;
+
+
+productEnabledControls:{[id:number]:FormControl}={}
 constructor(private readonly http: HttpClient,private readonly tableService:TableService,private readonly toastr:ToastrService){}
 
 public url:string='https://63be80d8585bedcb36aecdeb.mockapi.io/ecart'
@@ -24,8 +29,22 @@ ngOnInit(){
     Description:string;
   }>(this.url).subscribe((response)=>{
     this.products$=response;
+
+    for(const product of this.products$){
+      this.productEnabledControls[product.id]=new FormControl(product.isEnabled);
+      this.productEnabledControls[product.id].valueChanges.subscribe((value)=>{
+        product.isEnabled=value;
+
+        console.log(value)
+      })
+      
+    }
   })
 
+}
+
+isProductDisabled(product:any):boolean{
+  return !product.isEnabled;
 }
 // product:any;
 //  editing!: false;
@@ -78,6 +97,21 @@ saveUser() {
 
   });
 }
+
+deleteTableRow(id: number): Observable<any> {
+  return this.http.delete(`https://63be80d8585bedcb36aecdeb.mockapi.io/ecart/${id}`);
+}
+
+
+deleteRow(id: number) {
+  this.deleteTableRow(id).subscribe(() => {
+    console.log('Row deleted successfully.');
+  });
+}
+
+
+
+
 
 
 // showToaster(message:string){

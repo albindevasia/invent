@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 
 @Injectable({
     providedIn:'root'
@@ -14,3 +15,10 @@ return this.http.put(`${this.apiUrl}/ecart/`,products$);
  }
 }
 
+// export class DeleteService{
+//     constructor(private http: HttpClient) { }
+
+//     deleteTableRow(id: number): Observable<any> {
+//         return this.http.delete(`https://63be80d8585bedcb36aecdeb.mockapi.io/ecart/${id}`);
+//       }
+// }
