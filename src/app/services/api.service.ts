@@ -12,4 +12,10 @@ export class ApiService{
     public getSingle(productId:number):any{
         return this.http.get(`${this.apiUrl}/ecart/${productId}`);
     }
+
+    public updateSingeProduct(product: any) {
+        return this.http.put(`https://63be80d8585bedcb36aecdeb.mockapi.io/ecart`, product)
+         
+      }
+
 }

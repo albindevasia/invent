@@ -10,3 +10,7 @@ h1{
     pointer-events: none;
   }
 
+  tr.disabled-row {
+    opacity: 0.5;
+    pointer-events: none;
+  }

@@ -2,6 +2,7 @@
     <div class="-m-1.5 overflow-x-auto">
       <div class="p-1.5 min-w-full inline-block align-middle">
         <div class="overflow-hidden">
+          <form [formGroup]="updateProductForm">
           <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
             <thead>
               <tr>
@@ -58,10 +59,12 @@
             </thead>
             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
               <tr
-                *ngFor="let product of products$ " [class.disabled]="isProductDisabled(product) " 
+              
+              [formGroupName]="product.id"
+                *ngFor="let product of products$ |async"  
                 class="hover:bg-gray-100 dark:hover:bg-gray-700"
               >
-          
+              <!-- [class.disabled]="isProductDisabled(product) -->
                
                 <td
                 class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200"
@@ -73,8 +76,14 @@
                   class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
                 >
                 <!-- <input [(ngModel)]="product.Price"  name="Price" required  value="{{ product.Price  | currency:'USD'}}"> -->
-                {{ product.Price  | currency:'USD'}}
-                  
+                <!-- {{ product.Price  | currency:'USD'}} -->
+                <input
+                (change)="setFormatCurrency(product, $event)" 
+                formControlName="Price"
+                type="number"
+                class="py-3 border px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+              />
+              <!-- (change)="setFormatCurrency(product, $event)"   -->
                 </td>
                 <td
                   class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
@@ -84,7 +93,13 @@
                 <td
                   class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
                 >
-                  {{ product.stock}}
+                  <!-- {{ product.stock}} -->
+
+                  <input
+                  formControlName="stock"
+                  type="number"
+                  class="py-3 border px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                />
                 </td>
                 <!-- <td
                   class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
@@ -99,28 +114,38 @@
                   
               
                 </td> -->
-
-                <td>
+                <td
+                class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+              >
+                <button
+                  [disabled]="setDisableValue(product)"
+                  (click)="setUpdatedValues(product)"
+                  type="button"
+                  class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
+                >
+                  Update
+                </button>
+                 <td> 
                   <!-- <label class="switch">
                     <input type="checkbox" [formControl]="productEnabledControls[product.id]" >
                     <span class="slider round"></span>
                   </label> -->
 
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked    [formControl]="productEnabledControls[product.id]">
-                    <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked >
+                    <label class="form-check-label" for="flexSwitchCheckChecked"></label>
                   </div>
 
-                </td>
+                 </td>
 
-                <td
+                <!-- <td
                 class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
               >
               
                <button  (click)="editUser(product)">Edit</button>
                 
             
-              </td>
+              </td>  -->
 
                 
        <td
@@ -146,7 +171,7 @@
                   <button  (click)="saveUser()">Save</button>
                 
               </tr>   -->
-              <tr *ngIf="editingUser" style="margin-left:200">
+              <!-- <tr *ngIf="editingUser" style="margin-left:200">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -173,10 +198,10 @@
               </div>
 
 
-            </tr>
+            </tr> -->
             </tbody>
           </table>
-
+        </form>
 
         </div>
       </div>
