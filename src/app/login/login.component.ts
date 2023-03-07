@@ -25,22 +25,32 @@ export class LoginComponent {
 
  
 public login(){
-  const url:string='https://63be80d8585bedcb36aecdeb.mockapi.io/user'
+  const url:string='https://api-sales-app.josetovar.dev/login'
   const body=this.loginForm.value;
 
 
 
-this.http.post(url,body).subscribe((response)=>{
+this.http.post(url,body).subscribe((response:any)=>{
 
-  if(response){
+  // if(response){
 
 
 
   
  
-    localStorage.setItem('loggedIn', 'true');
-    this.router.navigate(['/dashboard'])
+  //   localStorage.setItem('loggedIn', 'true');
+  //   this.router.navigate(['/dashboard'])
     
+  // }
+
+  if(response){
+    console.log(response)
+    localStorage.setItem(
+      'access_token',
+      JSON.stringify(response.access_token)
+      
+    );
+    this.router.navigate(['/dashboard'])
   }
 
 })
