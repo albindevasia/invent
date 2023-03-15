@@ -26,13 +26,13 @@
      
         <button (click)="onPageChange(1)"  class="w-10 h-10 bg-blue-500 text-white p-4 inline-flex items-center text-sm font-medium rounded-full cursor-pointer" [disabled]="currentPage === 1">
           <<</button>
-        <button (click)="onPageChange(currentPage -1)"   class="w-10 h-10 bg-blue-500 text-white p-4 inline-flex items-center text-sm font-medium rounded-full cursor-pointer" [disabled]="currentPage === 1">
+        <button (click)="prevPage()"   class="w-10 h-10 bg-blue-500 text-white p-4 inline-flex items-center text-sm font-medium rounded-full cursor-pointer" [disabled]="currentPage === 1">
           prev</button>
         <button *ngFor="let pageNumber of pages" (click)="onPageChange(pageNumber)" [class.active]="pageNumber === currentPage"
           class="w-10 h-10 bg-blue-500 text-white p-4 inline-flex items-center text-sm font-medium rounded-full cursor-pointer">
           {{ pageNumber }}
         </button>
-        <button (click)="onPageChange(currentPage +1)"  class="w-10 h-10 bg-blue-500 text-white p-4 inline-flex items-center text-sm font-medium rounded-full cursor-pointer" [disabled]="currentPage === totalPages">
+        <button (click)="nextPage()"  class="w-10 h-10 bg-blue-500 text-white p-4 inline-flex items-center text-sm font-medium rounded-full cursor-pointer" [disabled]="currentPage === totalPages">
           Next</button>
         <button (click)="onPageChange(totalPages)"  class="w-10 h-10 bg-blue-500 text-white p-4 inline-flex items-center text-sm font-medium rounded-full cursor-pointer"  [disabled]="currentPage === totalPages">
           >>

@@ -1,3 +1,4 @@
+import { NumberFormatStyle } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
@@ -8,12 +9,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class PaginationComponent {
 
   
- @Input()  currentPage:number=1;;
-
-
-
-
-
+ @Input()  currentPage!:number;
 @Input() totalItems: number=18;
 @Input() pageSize: number=5;
 @Output() pageChanged = new EventEmitter<number>();
@@ -32,8 +28,24 @@ get pages(): number[] {
   return pages;
 }
 
+nextPage(){
+  if(this.currentPage < this.totalPages){
+    this.currentPage ++;
+    this.onPageChange;
+  }
+}
+
+prevPage(){
+  if(this.currentPage >1){
+    this.currentPage --;
+    this.onPageChange;
+  }
+}
+
 onPageChange(pageNumber: number): void {
   this.pageChanged.emit(pageNumber);
+
+
 }
 }
 
