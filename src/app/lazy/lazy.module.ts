@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { PagePipe } from '../page.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -25,7 +26,8 @@ import { PagePipe } from '../page.pipe';
     LazyRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   // providers: [
   //   {provide :HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}

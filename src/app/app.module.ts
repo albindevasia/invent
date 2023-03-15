@@ -42,6 +42,7 @@ import { AuthInterceptor } from './auth/authtoken.interceptor';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    
    
   
     ToastrModule.forRoot({
