@@ -9,10 +9,10 @@ export class GuardGuard implements CanActivate {
   constructor(){}
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot): boolean {
      
      
-    return true;
+    return false;
  
       }
   }

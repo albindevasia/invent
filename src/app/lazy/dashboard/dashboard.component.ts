@@ -1,11 +1,11 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
 // import { ToastrService } from 'ngx-toastr/public_api';
-import { TableService } from '../services/table.service';
+import { TableService } from '../../services/table.service';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ApiService } from '../services/api.service';
+import { ApiService } from '../../services/api.service';
 import { formatCurrency } from '@angular/common';
 
 @Component({
@@ -20,9 +20,11 @@ export class DashboardComponent {
   productEnabledControls: { [id: number]: FormControl } = {};
   products: any;
   updatingUser: any;
+  selectedStatus: any;
+  selectedStock: any;
   constructor(
     private readonly http: HttpClient,
-    private readonly toastr: ToastrService,
+    private readonly toastr:ToastrService,
     private readonly apiService: ApiService
   ) {}
 
@@ -49,20 +51,12 @@ export class DashboardComponent {
             price:new FormControl(formatCurrency(product.price,'en-US','$')),
             // price: new FormControl(product.price, Validators.min(0)),
             stock: new FormControl(product.stock, Validators.min(0)),
-            switch:new FormControl(product.active)
+             switch:new FormControl(product.active)
           })
         );
       });
 
-      // for(const product of this.products){
-      //   this.productEnabledControls[product.id]=new FormControl(product.isEnabled);
-      //   this.productEnabledControls[product.id].valueChanges.subscribe((value)=>{
-      //     product.isEnabled=value;
-
-      //     console.log(value)
-      //   })
-
-      // }
+    
     });
   }
 
@@ -109,8 +103,8 @@ export class DashboardComponent {
   }
 
   public setDisableValue(product: any): boolean {
-    const { price, stock } = this.updateProductForm.controls[product.id].value;
-
+    const { price, stock    } = this.updateProductForm.controls[product.id].value;
+ 
     return price == product.price && stock == product.stock;
   }
 
@@ -168,7 +162,9 @@ export class DashboardComponent {
 
     
   }
-   
+
+
+
 
   public deleteProduct(product:any){
     this.http.delete(`https://api-sales-app.josetovar.dev/products/${product.id}`)
@@ -195,105 +191,101 @@ export class DashboardComponent {
     })
   }
 
-  
+  public setFilters(activeEvent:any):void{
+ this.products$=this.http.get<any>(this.url).pipe(map((products:any)=>{
+  if(activeEvent.target.value){
+    return products.filter(
+      (product:any)=>product.active.toString() === activeEvent.target.value
+    );
+  }else{
+    return products;
+  }
+ }))
+ 
+  }
 
+  public setStock(activeEvent:any):void{
+    this.products$=this.http.get<any>(this.url).pipe(map((products:any)=>{
+      if(activeEvent.target.value)
+      if(activeEvent.target.value === '0'){
+        return products.filter(
+          (product:any)=>product.stock == 0
+        );
+      }else{
+        return products.filter(
+          (product:any)=>product.stock >= 1
+        )
+      }else{
+        return products;
+      }
+    }))
+      
+   
+  }
 
+//   filterData(){
+//     const active=this.selectedStatus;
+//     const stock=this.selectedStock;
 
-  // isProductDisabled(product:any):boolean{
-  //   return !product.isEnabled;
-  // }
+//     return this.products.filter((product:any)=>{
+// if(active === ""){
+//   return true;
 
-  // // product:any;
-  //  editing!: false;
+// }else if(product.active.toString()===active){
+//   if(stock === ""){
+//     return true;
+//   }else if (product.stock === stock){
+//     return true;
+//   }
+ 
+// }
+// return false;
+//     })
+//   }
 
-  // edit(product:any){
-  //   this.product=product;
-  //   // this.editing=false
+stockFilters:string[] = ["All", "0", "1"];
+activeStatusFilters:string[] = ["All", "true", "false"];
 
-  // }
-  // submit(){
-  //   this.tableService.updateData(this.product).subscribe((response: any)=>{
+selectedStockFilter:string = "All";
+selectedActiveStatusFilter:string = "All";
 
-  //     console.log(response)
-
-  //     this.editing=false
-  //     this.showToaster('update success');
-
-  //   })
-
-  // }
-  // cancel(){
-  //   this.editing=false
-
-  // }
-  // showToaster(message:string){
-  //   this.toastr.success(`${message}`,'success',{
-  //     timeOut:3000,
-  //     progressBar:true,
-  //     progressAnimation:'decreasing',
-  //     positionClass:'toast-bottom-right',
-  //     closeButton:true,
-
-  //   })
-
-  //  editUser(products$: any) {
-  //    this.updatingUser = products$;
-
-  //  }
-
-  //  saveUser() {
-  //    this.http.post(`https://api-sales-app.josetovar.dev/products/`, this.updatingUser).subscribe(() => {
-  //      this.updatingUser = null;
-  //      this.toastr.success('updated')
-
-  //  });
-  //  }
-
-  // deleteTableRow(id: number): Observable<any> {
-  //   return this.http.delete(
-  //     `https://63be80d8585bedcb36aecdeb.mockapi.io/ecart/${id}`
-  //   );
-  // }
-
-  // deleteRow(id: number) {
-  //   this.deleteTableRow(id).subscribe(() => {
-  //     console.log('Row deleted successfully.');
-  //   });
-  // }
-
-  // onCheckboxChanges(checked: boolean) {
-  //   this.rowDisabled = !checked;
-  // }
-
-  // showToaster(message:string){
-  //     this.toastr.success(`${message}`,'success',{
-  //       timeOut:3000,
-  //       progressBar:true,
-  //       progressAnimation:'decreasing',
-  //       positionClass:'toast-bottom-right',
-  //       closeButton:true,
-
-  //     })
 
 public  newForm=new FormGroup({
  
     name:new FormControl(),
     price:new FormControl(),
     sku:new FormControl(),
-    stock:new FormControl()
-
+    stock:new FormControl(),
+    active:new FormControl(false)
   })
    
-  public updateNew(){
-    this.apiService.createNew(this.newForm.value).subscribe((response)=>{
-      console.log(response);
-
-      this.http.get(`https://api-sales-app.josetovar.dev/products`).subscribe((response)=>{
+ public updateNew(){
+this.apiService.createNew(this.newForm.value).subscribe((response)=>{
+  if(response){
+    console.log(this.newForm.value)
+    this.http.get(`https://api-sales-app.josetovar.dev/products`).subscribe(response=>{
           this.products$=of(response);
-        })
-     
+          this.toastr.success('New product created')
   })
-
   }
+})
+ }
+ p:number=1;
+  items!: any[];
+
+  currentPage:number=1;
+   pageSize:number=3;
+   totalItems!: number;
+   totalPages!: number;
+  
+// initTableData(){
+//    this.totalItems=this.items.length;
+//    this.totalPages=Math.ceil(this.totalItems/this.pageSize);
+// }
+ onPageChanged(pageNumber:number){
+   this.currentPage=pageNumber;
+ }
 
 }
+
+

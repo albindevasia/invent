@@ -20,9 +20,10 @@ export class SimpleProductComponent {
 
       //  const url:string='https://63be80d8585bedcb36aecdeb.mockapi.io/ecart';
       this.apiservice.getSingle(params['productId']).subscribe((response:any)=>{
+        if(response){
         this.product=response;
 
- 
+        }
       })
     })
   }

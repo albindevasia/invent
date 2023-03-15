@@ -21,7 +21,7 @@ export class AppComponent {
     localStorage.removeItem('loggedIn');
   }
 
-  this.router.navigate(['/home'])
+  this.router.navigate([''])
 
 } 
 }

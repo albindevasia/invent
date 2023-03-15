@@ -39,7 +39,7 @@ public register(){
  this.http.post(Url,this.registerForm.value).subscribe(response=>{
   if(response){
     console.log(response);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/load/login']);
   }
 })
 
