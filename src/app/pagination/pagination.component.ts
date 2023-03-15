@@ -8,26 +8,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class PaginationComponent {
 
   
- @Input()  currentPage:number=1;
+ @Input()  currentPage!:number;
 
-//   @Output() PageChange:EventEmitter<number>=new EventEmitter<number>();
-//   products:any;
 
-//   onPageChange(pageNumber:number){
-//     this.currentPage=pageNumber;
-//     this.PageChange.emit(pageNumber);
-//   }
-// get totalPages():number{
-//   return Math.ceil(this.products /  5);
-// }
-
-// get pages():number[]{
-// const pagesArray=[];
-// for(let i=1;i<=this.totalPages;i++){
-//   pagesArray.push(i);
-// }
-// return pagesArray;
-// }
 
 
 
