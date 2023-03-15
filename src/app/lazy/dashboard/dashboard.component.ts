@@ -273,8 +273,8 @@ this.apiService.createNew(this.newForm.value).subscribe((response)=>{
 
   items!: any[];
 
-  currentPage!:number;
-   pageSize:number=3;
+  currentPage:number=1;
+   pageSize:number=5;
    totalItems!: number;
    totalPages!: number;
   
