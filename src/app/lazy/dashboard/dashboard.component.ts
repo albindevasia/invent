@@ -270,7 +270,7 @@ this.apiService.createNew(this.newForm.value).subscribe((response)=>{
   }
 })
  }
- p:number=1;
+
   items!: any[];
 
   currentPage:number=1;
@@ -278,10 +278,7 @@ this.apiService.createNew(this.newForm.value).subscribe((response)=>{
    totalItems!: number;
    totalPages!: number;
   
-// initTableData(){
-//    this.totalItems=this.items.length;
-//    this.totalPages=Math.ceil(this.totalItems/this.pageSize);
-// }
+
  onPageChanged(pageNumber:number){
    this.currentPage=pageNumber;
  }
