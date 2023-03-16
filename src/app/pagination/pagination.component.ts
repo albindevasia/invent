@@ -57,7 +57,7 @@ prevPage(currentPage:number):void{
 
 onPageChange(pageNumber: number): void {
   this.pageChanged.emit(pageNumber);
-this.nextPage(this.currentPage)
+
 
 }
 }
