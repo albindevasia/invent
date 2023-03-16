@@ -16,7 +16,7 @@ import { formatCurrency } from '@angular/common';
 export class DashboardComponent {
   rowDisabled: boolean = true;
   // editingUser: any;
-
+  totalItems!: number;
   productEnabledControls: { [id: number]: FormControl } = {};
   products: any;
   updatingUser: any;
@@ -24,7 +24,7 @@ export class DashboardComponent {
   selectedStock: any;
   constructor(
     private readonly http: HttpClient,
-    private readonly toastr:ToastrService,
+    private readonly toastr: ToastrService,
     private readonly apiService: ApiService
   ) {}
 
@@ -42,21 +42,20 @@ export class DashboardComponent {
       stock: number;
     }>(this.url);
 
-    this.products$.subscribe((products) => {
+    this.products$.subscribe((products: any[]) => {
       // this.products$=response;
+      this.totalItems = products.length;
       products.map((product: any) => {
         this.updateProductForm.addControl(
           `${product.id}`,
           new FormGroup({
-            price:new FormControl(formatCurrency(product.price,'en-US','$')),
+            price: new FormControl(formatCurrency(product.price, 'en-US', '$')),
             // price: new FormControl(product.price, Validators.min(0)),
             stock: new FormControl(product.stock, Validators.min(0)),
-             switch:new FormControl(product.active)
+            switch: new FormControl(product.active),
           })
         );
       });
-
-    
     });
   }
 
@@ -84,206 +83,196 @@ export class DashboardComponent {
   }
 
   public setUpdatedValues(product: any): void {
-    const {price}=this.updateProductForm.controls[product.id].value;
+    const { price } = this.updateProductForm.controls[product.id].value;
     const updatedValues = {
       ...product,
       ...this.updateProductForm.controls[product.id].value,
-      price:+price.substring(1).replaceAll(',','').replaceAll('.','')
+      price: +price.substring(1).replaceAll(',', '').replaceAll('.', ''),
     };
     console.log(updatedValues);
 
-    this.apiService
-      .updateSingeProduct(updatedValues)
-      .subscribe((response) => {
-        console.log(response);
+    this.apiService.updateSingeProduct(updatedValues).subscribe((response) => {
+      console.log(response);
 
-
-        this.toastr.success('updated');
-      });
+      this.toastr.success('updated');
+    });
   }
 
   public setDisableValue(product: any): boolean {
-    const { price, stock    } = this.updateProductForm.controls[product.id].value;
- 
+    const { price, stock } = this.updateProductForm.controls[product.id].value;
+
     return price == product.price && stock == product.stock;
   }
 
-
-  public updateProductStatus(product:any,event:any){
-    const status=event.target.checked;
-    if(event.target.checked==true){
+  public updateProductStatus(product: any, event: any) {
+    const status = event.target.checked;
+    if (event.target.checked == true) {
       this.updateProductForm.controls[product.id].get('price')?.enable();
       this.updateProductForm.controls[product.id].get('stock')?.enable();
 
-      this.http.put(
-        `https://api-sales-app.josetovar.dev/product-status/${product.id}?status=${status}`,{}
-  
-      )
-      .subscribe({
-        next:(response)=>{
-          if(response){
-            this.toastr.success(
-              `Product with ID:${product.id} has been activated`
-            )
-          }
-        },
-        error: (error) => {
-          this.toastr.error(`Product with ID: ${product.id} does not exist.`);
-        },
-        complete: () => {
-          console.log('Is good');
-        },
-      })
-
-    }else{
+      this.http
+        .put(
+          `https://api-sales-app.josetovar.dev/product-status/${product.id}?status=${status}`,
+          {}
+        )
+        .subscribe({
+          next: (response) => {
+            if (response) {
+              this.toastr.success(
+                `Product with ID:${product.id} has been activated`
+              );
+            }
+          },
+          error: (error) => {
+            this.toastr.error(`Product with ID: ${product.id} does not exist.`);
+          },
+          complete: () => {
+            console.log('Is good');
+          },
+        });
+    } else {
       this.updateProductForm.controls[product.id].get('price')?.disable();
       this.updateProductForm.controls[product.id].get('stock')?.disable();
 
-      this.http.put(
-        `https://api-sales-app.josetovar.dev/product-status/${product.id}?status=${status}`,{}
-  
-      )
+      this.http
+        .put(
+          `https://api-sales-app.josetovar.dev/product-status/${product.id}?status=${status}`,
+          {}
+        )
+        .subscribe({
+          next: (response) => {
+            if (response) {
+              this.toastr.success(
+                `Product with ID:${product.id} has been activated`
+              );
+            }
+          },
+          error: (error) => {
+            this.toastr.error(`Product with ID: ${product.id} does not exist.`);
+          },
+          complete: () => {
+            console.log('Is good');
+          },
+        });
+    }
+  }
+
+  public deleteProduct(product: any) {
+    this.http
+      .delete(`https://api-sales-app.josetovar.dev/products/${product.id}`)
       .subscribe({
-        next:(response)=>{
-          if(response){
+        next: (response) => {
+          this.http
+            .get(`https://api-sales-app.josetovar.dev/products`)
+            .subscribe((response) => {
+              this.products$ = of(response);
+            });
+          if (response) {
             this.toastr.success(
-              `Product with ID:${product.id} has been activated`
-            )
+              `Product with ID:${product.id} has been deleted successfully.`
+            );
           }
         },
         error: (error) => {
-          this.toastr.error(`Product with ID: ${product.id} does not exist.`);
+          this.toastr.error(`Product with ID: ${product.id}`);
         },
         complete: () => {
           console.log('Is good');
         },
-      })
-    }
-
-    
+      });
   }
 
-
-
-
-  public deleteProduct(product:any){
-    this.http.delete(`https://api-sales-app.josetovar.dev/products/${product.id}`)
-    .subscribe({
-      next:(response)=>{
-
-        this.http.get(`https://api-sales-app.josetovar.dev/products`).subscribe(response=>{
-          this.products$=of(response);
-        })
-        if(response){
-          this.toastr.success(
-            `Product with ID:${product.id} has been deleted successfully.`
-          )
+  public setFilters(activeEvent: any): void {
+    this.currentPage = 1;
+    this.products$ = this.http.get<any>(this.url).pipe(
+      map((products: any) => {
+        this.totalItems = products.length;
+        if (activeEvent.target.value) {
+          return products.filter(
+            (product: any) =>
+              product.active.toString() === activeEvent.target.value
+          );
+        } else {
+          return products;
         }
-      },
-      error:(error)=>{
-        this.toastr.error(`Product with ID: ${product.id}`)
-      },
-      complete:()=>{
-        console.log('Is good')
-      }
-
-    
-    })
-  }
-
-  public setFilters(activeEvent:any):void{
- this.products$=this.http.get<any>(this.url).pipe(map((products:any)=>{
-  if(activeEvent.target.value){
-    return products.filter(
-      (product:any)=>product.active.toString() === activeEvent.target.value
+      })
     );
-  }else{
-    return products;
-  }
- }))
- this.currentPage=1;
   }
 
-  public setStock(activeEvent:any):void{
-    this.products$=this.http.get<any>(this.url).pipe(map((products:any)=>{
-      if(activeEvent.target.value)
-      if(activeEvent.target.value === '0'){
-        return products.filter(
-          (product:any)=>product.stock == 0
-        );
-      }else{
-        return products.filter(
-          (product:any)=>product.stock >= 1
-        )
-      }else{
-        return products;
+  public setStock(activeEvent: any): void {
+    this.currentPage = 1;
+    this.products$ = this.http.get<any>(this.url).pipe(
+      map((products: any) => {
+        this.totalItems = products.length;
+        if (activeEvent.target.value)
+          if (activeEvent.target.value === '0') {
+            return products.filter((product: any) => product.stock == 0);
+          } else {
+            return products.filter((product: any) => product.stock >= 1);
+          }
+        else {
+          return products;
+        }
+      })
+    );
+  }
+
+  //   filterData(){
+  //     const active=this.selectedStatus;
+  //     const stock=this.selectedStock;
+
+  //     return this.products.filter((product:any)=>{
+  // if(active === ""){
+  //   return true;
+
+  // }else if(product.active.toString()===active){
+  //   if(stock === ""){
+  //     return true;
+  //   }else if (product.stock === stock){
+  //     return true;
+  //   }
+
+  // }
+  // return false;
+  //     })
+  //   }
+
+  // stockFilters:string[] = ["All", "0", "1"];
+  // activeStatusFilters:string[] = ["All", "true", "false"];
+
+  // selectedStockFilter:string = "All";
+  // selectedActiveStatusFilter:string = "All";
+
+  public newForm = new FormGroup({
+    name: new FormControl(),
+    price: new FormControl(),
+    sku: new FormControl(),
+    stock: new FormControl(),
+    active: new FormControl(false),
+  });
+
+  public updateNew() {
+    this.apiService.createNew(this.newForm.value).subscribe((response) => {
+      if (response) {
+        console.log(this.newForm.value);
+        this.http
+          .get(`https://api-sales-app.josetovar.dev/products`)
+          .subscribe((response) => {
+            this.products$ = of(response);
+            this.toastr.success('New product created');
+          });
       }
-    }))
-      
-   this.currentPage=1;
+    });
   }
-
-//   filterData(){
-//     const active=this.selectedStatus;
-//     const stock=this.selectedStock;
-
-//     return this.products.filter((product:any)=>{
-// if(active === ""){
-//   return true;
-
-// }else if(product.active.toString()===active){
-//   if(stock === ""){
-//     return true;
-//   }else if (product.stock === stock){
-//     return true;
-//   }
- 
-// }
-// return false;
-//     })
-//   }
-
-// stockFilters:string[] = ["All", "0", "1"];
-// activeStatusFilters:string[] = ["All", "true", "false"];
-
-// selectedStockFilter:string = "All";
-// selectedActiveStatusFilter:string = "All";
-
-
-public  newForm=new FormGroup({
- 
-    name:new FormControl(),
-    price:new FormControl(),
-    sku:new FormControl(),
-    stock:new FormControl(),
-    active:new FormControl(false)
-  })
-   
- public updateNew(){
-this.apiService.createNew(this.newForm.value).subscribe((response)=>{
-  if(response){
-    console.log(this.newForm.value)
-    this.http.get(`https://api-sales-app.josetovar.dev/products`).subscribe(response=>{
-          this.products$=of(response);
-          this.toastr.success('New product created')
-  })
-  }
-})
- }
 
   items!: any[];
 
-  currentPage:number=1;
-   pageSize:number=5;
-   totalItems!: number;
-   totalPages!: number;
+  currentPage: number = 1;
+  pageSize: number = 5;
 
+  totalPages!: number;
 
- onPageChanged(pageNumber:number){
-   this.currentPage=pageNumber;
- }
-
-
+  onPageChanged(pageNumber: number) {
+    this.currentPage = pageNumber;
+  }
 }
-
-
