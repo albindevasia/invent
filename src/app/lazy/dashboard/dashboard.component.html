@@ -9,7 +9,7 @@
    (change)="setFilters($event)"
     id="hs-select-label"
    class="py-3 px-4 pr-9 block w-full border border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"  >
-   <option value='All'>All Products</option>
+   <option value=''>All Products</option>
    <option value="true">Only active products</option>
    <option value="false">Only inactive products</option>
   </select>
@@ -219,7 +219,7 @@
               </tr>    -->
       
               <div class="modal-dialog mr-200px;" role="document"  >
-                <div class="modal-content">
+                <div class="modal-content" >
                   <form [formGroup]="newForm" (ngSubmit)="updateNew()">
                   <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel">Create New</h4>

@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
 // import { ToastrService } from 'ngx-toastr/public_api';
 import { TableService } from '../../services/table.service';
 import { ToastrService } from 'ngx-toastr';
@@ -201,7 +201,7 @@ export class DashboardComponent {
     return products;
   }
  }))
- 
+ this.currentPage=1;
   }
 
   public setStock(activeEvent:any):void{
@@ -220,7 +220,7 @@ export class DashboardComponent {
       }
     }))
       
-   
+   this.currentPage=1;
   }
 
 //   filterData(){
@@ -243,11 +243,11 @@ export class DashboardComponent {
 //     })
 //   }
 
-stockFilters:string[] = ["All", "0", "1"];
-activeStatusFilters:string[] = ["All", "true", "false"];
+// stockFilters:string[] = ["All", "0", "1"];
+// activeStatusFilters:string[] = ["All", "true", "false"];
 
-selectedStockFilter:string = "All";
-selectedActiveStatusFilter:string = "All";
+// selectedStockFilter:string = "All";
+// selectedActiveStatusFilter:string = "All";
 
 
 public  newForm=new FormGroup({
@@ -277,7 +277,7 @@ this.apiService.createNew(this.newForm.value).subscribe((response)=>{
    pageSize:number=5;
    totalItems!: number;
    totalPages!: number;
-  
+
 
  onPageChanged(pageNumber:number){
    this.currentPage=pageNumber;
