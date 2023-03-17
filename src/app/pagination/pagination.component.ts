@@ -20,17 +20,17 @@ export class PaginationComponent implements OnChanges  {
 
   constructor(private cdr: ChangeDetectorRef) {}
   
-  
+ @Input() clients$!:Observable<any>  
 @Input() products$!:Observable<any>
   @Input() currentPage: number = 1;
-  // @Input() totalItems!: number;
+  @Input() totalItems!: number;
   @Input() pageSize: number = 5;
   @Output() pageChanged = new EventEmitter();
 
   toPage!:number
 
   get totalPages(): number {
-    return Math.ceil(this.toPage/ this.pageSize);
+    return Math.ceil(this.totalItems/ this.pageSize);
   }
 
 
@@ -43,7 +43,7 @@ export class PaginationComponent implements OnChanges  {
 
     return pages;
   }
-  
+ 
  
   // ngOnInit(){
   //   this.pages()
@@ -61,10 +61,11 @@ export class PaginationComponent implements OnChanges  {
     //   console.log(this.currentPage);
 
     this.products$.subscribe((product)=>{
-      this.toPage=product.length
-      
-    })
+      this.totalItems=product.length
 
+     
+
+  })
        this.currentPage = 1;
 
       // this.pageChanged.emit({
@@ -96,10 +97,10 @@ export class PaginationComponent implements OnChanges  {
     }
   }
 
-  onPageChange(pageNumbe: number): void {
-    this.pageChanged.emit(pageNumbe);
+  onPageChange(pageNumber: number): void {
+    this.pageChanged.emit(pageNumber);
     if (this.currentPage) {
-      this.currentPage = pageNumbe;
+      this.currentPage = pageNumber;
     }
   }
 }

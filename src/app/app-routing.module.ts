@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginGuard } from './auth/login.guard';
-import { DashboardComponent } from './lazy/dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { GuardGuard } from './services/guard.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './load/login/login.component';
@@ -23,9 +23,9 @@ const routes: Routes = [
   },
 
   {
-    path:'lazy',
+    path:'dashboard',
     // component:DashboardComponent,\
-    loadChildren:()=>import('./lazy/lazy.module').then(m=>m.LazyModule),
+    loadChildren:()=>import('./dashboard/dashboard.module').then(m=>m.DashboardModule),
     // canActivate:[GuardGuard]
   },                                 
 

@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {  HttpClientModule } from '@angular/common/http';
-import { LazyRoutingModule } from './lazy-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
+
+import { DashboardComponent } from '../dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { PagePipe } from '../page.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ClientsComponent } from '../clients/clients.component';
+import { ProductsComponent } from '../products/products.component';
+import { DashboardRoutingModule } from './dashboard-routing.module';
 
 
 
@@ -15,15 +18,18 @@ import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     DashboardComponent,
+    ClientsComponent,
+    ProductsComponent,
     PaginationComponent,
     PagePipe
+  
    
   ],
   imports: [
   
    
     CommonModule,
-    LazyRoutingModule,
+   DashboardRoutingModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
@@ -38,4 +44,4 @@ exports:[
 ]
 
 })
-export class LazyModule { }
+export class DashboardModule { }

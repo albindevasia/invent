@@ -50,7 +50,7 @@ this.http.post(url,body).subscribe((response:any)=>{
       JSON.stringify(response.access_token)
       
     );
-    this.router.navigate(['/lazy/dashboard'])
+    this.router.navigate(['/dashboard'])
   }
 
 })

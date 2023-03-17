@@ -1,19 +1,20 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnChanges, SimpleChanges } from '@angular/core';
 // import { ToastrService } from 'ngx-toastr/public_api';
-import { TableService } from '../../services/table.service';
+
 import { ToastrService } from 'ngx-toastr';
 import { map, Observable, of } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ApiService } from '../../services/api.service';
+
 import { formatCurrency } from '@angular/common';
+import { ApiService } from '../services/api.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss']
 })
-export class DashboardComponent {
+export class ProductsComponent {
   rowDisabled: boolean = true;
   // editingUser: any;
   totalItems!: number;
@@ -91,7 +92,7 @@ export class DashboardComponent {
     };
     console.log(updatedValues);
 
-    this.apiService.updateSingeProduct(updatedValues).subscribe((response) => {
+    this.apiService.updateSingeProduct(updatedValues).subscribe((response: any) => {
       console.log(response);
 
       this.toastr.success('updated');
@@ -276,3 +277,5 @@ export class DashboardComponent {
     this.currentPage = pageNumber;
   }
 }
+
+

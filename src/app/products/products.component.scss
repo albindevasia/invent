@@ -1,0 +1,20 @@
+.class{
+    background-image: url('/assets/si.webp');
+  
+  h1{
+      font-size:  50px;
+      font-weight: 600;
+      font-family:Arial, Helvetica, sans-serif;
+      text-align: center;
+  }
+  
+  .disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  
+    tr.disabled-row {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }

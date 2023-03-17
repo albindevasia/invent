@@ -1,0 +1,25 @@
+<div class="border-b-2 border-gray-200 dark:border-gray-700">
+    <nav class="-mb-0.5 flex space-x-6">
+      <a class="py-4 px-1 inline-flex items-center gap-2 border-b-[3px] border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-blue-600" href="#"
+      routerLink="./products"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{exact: true}">
+        <svg class="w-3.5 h-3.5 text-gray-400 dark:text-gray-600" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+          <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+        </svg>
+       Products
+      </a>
+      <a class="py-4 px-1 inline-flex items-center gap-2 border-b-[3px] border-transparent-500 text-sm font-medium whitespace-nowrap text-blue-600" href="#" aria-current="page"
+      routerLink="./clients"
+      routerLinkActive="active">
+        <svg class="w-3.5 h-3.5 text-blue-600" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+          <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+        </svg>
+        Clients
+      </a>
+ 
+    </nav>
+  </div>
+  <router-outlet></router-outlet>

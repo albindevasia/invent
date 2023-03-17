@@ -22,4 +22,10 @@ export class ApiService{
         return this.http.post(`${this.apiUrl}/products`,product)
       }
 
+public api:string='https://api-sales-app.josetovar.dev/clients'
+
+public updateClient(client:any){
+  return this.http.put(this.api,client)
+}
+
 }
