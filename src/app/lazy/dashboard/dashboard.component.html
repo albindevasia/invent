@@ -31,7 +31,7 @@
    </div>
 </div>
 
-<app-pagination [totalItems]="totalItems" (pageChanged)="onPageChanged($event)"></app-pagination> 
+<app-pagination [products$]="products$" (pageChanged)="onPageChanged($event)"></app-pagination> 
 <!-- (pageChanged)="onPageChanged($event)" -->
 <!-- 
 [totalPages]="totalPages" [currentPage]="currentPage" -->
