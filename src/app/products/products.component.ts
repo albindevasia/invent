@@ -163,11 +163,7 @@ export class ProductsComponent {
       .delete(`https://api-sales-app.josetovar.dev/products/${product.id}`)
       .subscribe({
         next: (response) => {
-          this.http
-            .get(`https://api-sales-app.josetovar.dev/products`)
-            .subscribe((response) => {
-              this.products$ = of(response);
-            });
+      this.ngOnInit();
           if (response) {
             this.toastr.success(
               `Product with ID:${product.id} has been deleted successfully.`
@@ -243,7 +239,10 @@ export class ProductsComponent {
 
   // selectedStockFilter:string = "All";
   // selectedActiveStatusFilter:string = "All";
-
+ creating=false;
+ newProduct(){
+  this.creating=true;
+ }
   public newForm = new FormGroup({
     name: new FormControl(),
     price: new FormControl(),
@@ -256,16 +255,21 @@ export class ProductsComponent {
     this.apiService.createNew(this.newForm.value).subscribe((response) => {
       if (response) {
         console.log(this.newForm.value);
-        this.http
-          .get(`https://api-sales-app.josetovar.dev/products`)
-          .subscribe((response) => {
-            this.products$ = of(response);
+        // this.http
+        //   .get(`https://api-sales-app.josetovar.dev/products`)
+        //   .subscribe((response) => {
+        //     this.products$ = of(response);
+        this.ngOnInit();
             this.toastr.success('New product created');
-          });
+            this.creating=false;
+          // });
       }
     });
   }
-
+  cancel(){
+    this.creating=false;
+    this.toastr.info('The new product not created')
+  }
   items!: any[];
 
   currentPage: number = 1;

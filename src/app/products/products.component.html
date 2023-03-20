@@ -30,6 +30,7 @@
        </select>
        </div>
     </div>
+    <button class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" (click)="newProduct()" style="float:right;">ADDNEW</button>
     
     <app-pagination [products$]="products$" (pageChanged)="onPageChanged($event)"></app-pagination> 
     <!-- (pageChanged)="onPageChanged($event)" -->
@@ -217,7 +218,7 @@
                       <button  (click)="saveUser()">Save</button>
                     
                   </tr>    -->
-          
+                <div *ngIf="creating">
                   <div class="modal-dialog mr-200px;" role="document"  >
                     <div class="modal-content" >
                       <form [formGroup]="newForm" (ngSubmit)="updateNew()">
@@ -225,24 +226,25 @@
                         <h4 class="modal-title" id="myModalLabel">Create New</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                       </div>
+                      
                       <div class="modal-body">
-                        
+                        <div style="display:flex; justify-content:space-between; background-color:aquamarine">
                           <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" name="name" required  formControlName="name" class="dashboard-input">
+                            <input type="text" class="form-control" name="name" required  formControlName="name" class="dashboard-input" style="background-color:rgb(143, 182, 230)">
                           </div>
                           <div class="form-group">
                             <label for="price">Price</label>
-                            <input type="number" class="form-control" name="price" required  placeholder="" formControlName="price" class="dashboard-input">
+                            <input type="number" class="form-control" name="price" required  placeholder="" formControlName="price" class="dashboard-input"  style="background-color:rgb(143, 182, 230)">
                           </div>
                           <div class="form-group">
                             <label for="sku">SKU</label>
-                            <input type="number" class="form-control" name="sku" required  placeholder=""  formControlName="sku" class="dashboard-input">
+                            <input type="number" class="form-control" name="sku" required  placeholder=""  formControlName="sku" class="dashboard-input"  style="background-color:rgb(143, 182, 230)">
                           </div>
     
                           <div class="form-group">
                             <label for="stock">STOCK</label>
-                            <input type="number" class="form-control" name="stock" required  placeholder=""  formControlName="stock" class="dashboard-input">
+                            <input type="number" class="form-control" name="stock" required  placeholder=""  formControlName="stock" class="dashboard-input"  style="background-color:rgb(143, 182, 230)">
                           </div>
     
                           <div class="form-group">
@@ -252,17 +254,18 @@
                             </label>
                           </div>
     
-                        
+                        </div>
                       </div>
                       <div class="modal-footer">
-                  
+                   <button class="btn btn-secondary" type="button" (click)="cancel()">cancel</button>
                         <button type="submit" class="btn btn-primary" >Save changes</button>
                       </div>
+                   
                     </form>
                     </div>
                   </div>
     
-    
+                </div>
              
                 </tbody>
               </table>

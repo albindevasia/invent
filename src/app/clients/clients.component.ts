@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { AnonymousSubject } from 'rxjs/internal/Subject';
+
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { ToastrService } from 'ngx-toastr';
@@ -40,7 +40,7 @@ ngOnInit(){
   
 this.clients$.subscribe((clients:any)=>{
    this.totalItems=clients.length;
-  // console.log(client)
+   console.log(clients.length)
 
 })
 
@@ -109,22 +109,22 @@ public clientForm=new FormGroup({
 })
 
 public newClient(){
+  if(this.clientForm.valid){
   this.apiService.clientNew(this.clientForm.value).subscribe((res)=>{
     if(res){
       console.log(this.clientForm.value);
-      // this.http
-      // .get(`https://api-sales-app.josetovar.dev/clients`)
-      // .subscribe((response) => {
-      //   this.clients$ = of(response);
+
        this.ngOnInit();
         this.creating=false;
-        this.toastr.success(`New Client with created`);
-      // });
-  
+        this.toastr.success(`New Client  created`);
+
 
     }
    })
 
+}else{
+  this.toastr.error('the form is not valid')
+}
 }
 cancelCreation(){
   this.creating=false;
