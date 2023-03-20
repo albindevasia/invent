@@ -1,4 +1,10 @@
 .fluid-container{
     background-image: url('/assets/log.webp');
     font-weight: 1000;
+
+    th{
+        font-size: larger;
+        font-style: italic;
+        color: red;
+    }
 }

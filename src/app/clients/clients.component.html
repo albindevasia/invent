@@ -1,10 +1,64 @@
+<button (click)="add()"  class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-green-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Add </button>
+<div *ngIf="creating">
+  <div class="modal-dialog mr-200px;" role="document"  >
+    <div class="modal-content" >
+      <form [formGroup]="clientForm" (ngSubmit)="newClient()">
+      <div class="modal-header">
+  <h2 class="modal-title" id="myModalLabel">Add New Client Details</h2>
+      </div>
+  
+      <div class="modal-body" style="display:flex;justify-content:space-between">
+        <div class="form-group">
+    <label>FirstName:</label>
+    <input type="text" class="form-control"  name="first_name" required formControlName="first_name" style="width:200px;">
+        </div>
+        <div class="form-group">
+    <label>LastName:</label>
+    <input type="text" class="form-control" name="last_name" required formControlName="last_name" style="width:200px;">
+        </div>
+        <div class="form-group">
+    <label>Address:</label>
+    <input type="text" class="form-control" name="address" required formControlName="address" style="width:200px;">
+        </div>
+        <div class="form-group">
+    <label>City:</label>
+    <input type="text" class="form-control" name="city" required formControlName="city" style="width:200px;">
+        </div>
+        <div class="form-group">
+    <label>State:</label>
+    <input type="text" class="form-control" name="state" required formControlName="state" style="width:200px;">
+        </div>
+        <div class="form-group">
+    <label>Country:</label>
+    <input type="text" class="form-control" name="country" required formControlName="country" style="width:200px;">
+        </div>
+        <div class="form-group">
+    <label>Phone:</label>
+    <input type="number" class="form-control" name="phone" required formControlName="phone" style="width:200px;">
+        </div>
+        <div class="form-group">
+    <label>Email:</label>
+    <input type="text" class="form-control" name="email" required formControlName="email" style="width:200px;">
+        </div>
+      </div>
+      <div class="modal-footer">
+    <button type="submit" [disabled]="''" class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Save</button>
+    <button  type="button" (click)="cancelCreation()" class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Cancel</button>
+      </div>
+    </form>
+  
+  </div>
+</div>
+</div>
 <div class="fluid-container">
+
 
 <div class="flex flex-col">
 
     <div class="-m-1.5 overflow-x-auto">
       <div class="p-1.5 min-w-full inline-block align-middle">
         <div class="overflow-hidden">
+         
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                 <thead>
                   <tr>
@@ -142,7 +196,7 @@ Action
        <td  class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
        > 
         
-       <button class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Edit</button>
+       <button (click)="edit(client)" class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Edit</button>
      
  
  
@@ -150,7 +204,7 @@ Action
         <td  class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
         > 
          
-        <button class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" >Delete</button>
+        <button (click)="deleteClient(client)" class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" >Delete</button>
       
   
   
@@ -158,10 +212,38 @@ Action
     </tr>
 </tbody>
 </table>
+<div *ngIf="editing" style="width:500px;">
+  <h2>Edit Client Details</h2>
+  <form (submit)="submit()">
+    <div style="display:flex; justify-content:space-between">
+    <label>FirstName:</label>
+    <input [(ngModel)]="client.first_name" name="first_name" required>
+ 
+  
+    <label>LastName:</label>
+    <input [(ngModel)]="client.last_name" name="last_name" required>
+  
+    <label>Address:</label>
+    <input [(ngModel)]="client.address" name="address" required>
+ 
+    <label>Phone:</label>
+    <input [(ngModel)]="client.phone" name="phone" required>
+ 
+    <label>Email:</label>
+    <input [(ngModel)]="client.email" name="email" required>
+
+
+ 
+    <button type="submit" class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Save</button>
+    <button  type="button" (click)="cancel()" class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Cancel</button>
+  </div>
+  </form>
+</div>
 </div>
 </div>
 </div>
 
 </div>
+
 <app-pagination  [currentPage]="currentPage" [totalItems]="totalItems" (pageChanged)="onPageCh($event)"></app-pagination>
 </div>

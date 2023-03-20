@@ -25,7 +25,9 @@ export class ApiService{
 public api:string='https://api-sales-app.josetovar.dev/clients'
 
 public updateClient(client:any){
-  return this.http.put(this.api,client)
+  return this.http.put(`${this.api}`,client)
 }
-
+public clientNew(client:any){
+ return this.http.post(`${this.api}`,client)
+}
 }
