@@ -48,7 +48,7 @@ this.clients$.subscribe((clients:any)=>{
         address:new FormControl(client.address,Validators.required),
         city:new FormControl(client.city,Validators.required),
         state:new FormControl(client.state,Validators.required),
-        country:new FormControl(client.first_name,Validators.required),
+        country:new FormControl(client.country,Validators.required),
         phone:new FormControl(client.phone,Validators.required),
         email:new FormControl(client.email,Validators.required),
       })
