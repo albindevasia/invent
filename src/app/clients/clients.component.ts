@@ -109,7 +109,7 @@ public clientForm=new FormGroup({
 })
 
 public newClient(){
-  if(this.clientForm.valid){
+
   this.apiService.clientNew(this.clientForm.value).subscribe((res)=>{
     if(res){
       console.log(this.clientForm.value);
@@ -122,9 +122,7 @@ public newClient(){
     }
    })
 
-}else{
-  this.toastr.error('the form is not valid')
-}
+
 }
 cancelCreation(){
   this.creating=false;
