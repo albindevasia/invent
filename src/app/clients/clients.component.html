@@ -1,8 +1,6 @@
 
-<button type="button" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" data-hs-overlay="#hs-focus-management-modal">
-  Open modal
-</button>
 
+<!-- <div *ngIf="editing">
 <div id="hs-focus-management-modal" class="hs-overlay hidden w-full h-full fixed top-0 left-0 z-[60] overflow-x-hidden overflow-y-auto">
   <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
     <div class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
@@ -18,21 +16,49 @@
         </button>
       </div>
       <div class="p-4 overflow-y-auto">
-        <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Email</label>
-        <input type="email" id="input-label" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="you@site.com" autofocus>
-      </div>
+        <form (submit)="submit()">
+        <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">FirstName</label>
+        <input [(ngModel)]="client.first_name" type="text" name="first_name" id="input-label" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="you@site.com" autofocus>
+    
+        <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">LastName</label>
+        <input [(ngModel)]="client.last_name" type="text" name= "last_name" id="input-label" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="you@site.com" autofocus>
+        
+        <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Address</label>
+        <input [(ngModel)]="client.address" type="text" name="address" id="input-label" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="you@site.com" autofocus>
+        
+        
+        <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">City</label>
+        <input [(ngModel)]="client.city" type="text" type="city" id="input-label" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="you@site.com" autofocus>
+        
+      
+        <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">State</label>
+        <input  [(ngModel)]="client.state" type="text" name="state" id="input-label" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="you@site.com" autofocus>
+        
+        
+        <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Country</label>
+        <input  [(ngModel)]="client.country" type="text" name="country" id="input-label" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="you@site.com" autofocus>
+        
+        
+        <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Phone</label>
+        <input  [(ngModel)]="client.phone" type="number" name="phone" id="input-label" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="you@site.com" autofocus>
+        
+        <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">LastName</label>
+        <input  [(ngModel)]="client.email" type="text" name="email" id="input-label" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="you@site.com" autofocus>
+        
+    </form>
+  </div>
       <div class="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-gray-700">
-        <button type="button" class="hs-dropdown-toggle py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800" data-hs-overlay="#hs-focus-management-modal">
+        <button type="button" (click)="cancel()" class="hs-dropdown-toggle py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800" data-hs-overlay="#hs-focus-management-modal">
           Close
         </button>
-        <a class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" href="#">
+        <button type="submit" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" href="#">
           Save changes
-        </a>
+        </button>
       </div>
     </div>
   </div>
 </div>
-
+</div> -->
 <button (click)="add()"  class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-green-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">AddNew </button>
 <div *ngIf="creating">
   <div class="modal-dialog mr-200px;" role="document" >
@@ -90,10 +116,11 @@
 
 <div class="flex flex-col">
 
-    <div class="-m-1.5 overflow-x-auto">
+    <div class="-m-1.5  overflow-x-auto  ">
+      <!-- overflow-x-auto -->
       <div class="p-1.5 min-w-full inline-block align-middle">
-        <div class="overflow-hidden">
-         
+        <div>
+          <!-- class="overflow-hidden" -->
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                 <thead>
                   <tr>
@@ -232,7 +259,9 @@ Action
        > 
         
        <button (click)="edit(client)" class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Edit</button>
-     
+       <!-- <button (click)="edit(client)" type="button" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" data-hs-overlay="#hs-focus-management-modal"> -->
+        <!-- Open modal
+      </button> -->
  
  
         </td>
