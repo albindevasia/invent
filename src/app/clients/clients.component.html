@@ -280,14 +280,14 @@ Action
   <h2>Edit Client Details</h2>
   <form (submit)="submit()">
     <div style="display:flex; justify-content:space-between">
-    <label>FirstName:</label>
+     <label>FirstName:</label> 
     <input [(ngModel)]="client.first_name" name="first_name" required>
  
-  
-    <label>LastName:</label>
+   
+    <label>LastName:</label> 
     <input [(ngModel)]="client.last_name" name="last_name" required>
-  
-    <label>Address:</label>
+   
+    <label>Address:</label> 
     <input [(ngModel)]="client.address" name="address" required>
  
     <label>Phone:</label>
@@ -296,11 +296,11 @@ Action
     <label>Email:</label>
     <input [(ngModel)]="client.email" name="email" required>
 
-
+  </div>
  
     <button type="submit" class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Save</button>
     <button  type="button" (click)="cancel()" class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Cancel</button>
-  </div>
+ 
   </form>
 </div>
 </div>
