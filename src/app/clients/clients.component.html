@@ -297,10 +297,18 @@ Action
     <input [(ngModel)]="client.email" name="email" required>
 
   </div>
+  <div style="display:flex; justify-content:space-between; margin-top:10px;">
+    <label>City:</label> 
+    <input [(ngModel)]="client.city" name="city" required>
+
+    <label>State:</label> 
+    <input [(ngModel)]="client.state" name="state" required>
  
-    <button type="submit" class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Save</button>
+  <label>Country</label> 
+  <input [(ngModel)]="client.country" name="country" required>
+    <button style="margin-left:10px;" type="submit" class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Save</button>
     <button  type="button" (click)="cancel()" class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Cancel</button>
- 
+  </div>
   </form>
 </div>
 </div>
