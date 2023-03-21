@@ -109,7 +109,7 @@ public clientForm=new FormGroup({
 })
 
 public newClient(){
-
+if(this.clientForm.valid){
   this.apiService.clientNew(this.clientForm.value).subscribe((res)=>{
  
       console.log(this.clientForm.value);
@@ -122,6 +122,7 @@ public newClient(){
     
    })
 
+  }
 
 }
 cancelCreation(){
@@ -131,7 +132,7 @@ cancelCreation(){
 items!: any[];
 
 currentPage: number=1;
-pageSize: number = 4;
+pageSize: number = 5;
 
 totalPages!: number;
 
