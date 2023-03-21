@@ -98,20 +98,20 @@ public add(){
   this.creating=true;
 }
 public clientForm=new FormGroup({
-  first_name:new FormControl(''),
-  last_name:new FormControl(''),
-  address:new FormControl(''),
-  city:new FormControl(''),
-  state:new FormControl(''),
-  country:new FormControl(''),
-  email:new FormControl(''),
-  phone:new FormControl('')
+  first_name:new FormControl('',Validators.required),
+  last_name:new FormControl('',Validators.required),
+  address:new FormControl('',Validators.required),
+  city:new FormControl('',Validators.required),
+  state:new FormControl('',Validators.required),
+  country:new FormControl('',Validators.required),
+  email:new FormControl('',Validators.required),
+  phone:new FormControl('',Validators.required)
 })
 
 public newClient(){
 
   this.apiService.clientNew(this.clientForm.value).subscribe((res)=>{
- if(res){
+ 
       console.log(this.clientForm.value);
 
        this.ngOnInit();
@@ -119,7 +119,7 @@ public newClient(){
         this.toastr.success(`New Client  created`);
 
 
- }
+    
    })
 
 
