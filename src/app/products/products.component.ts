@@ -1,13 +1,14 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Component, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Inject, OnChanges, SimpleChanges } from '@angular/core';
 // import { ToastrService } from 'ngx-toastr/public_api';
 
 import { ToastrService } from 'ngx-toastr';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable, of, Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { formatCurrency } from '@angular/common';
 import { ApiService } from '../services/api.service';
+import { SubjectService } from '../services/sub.service';
 
 @Component({
   selector: 'app-products',
@@ -26,7 +27,8 @@ export class ProductsComponent {
   constructor(
     private readonly http: HttpClient,
     private readonly toastr: ToastrService,
-    private readonly apiService: ApiService
+    private readonly apiService: ApiService,
+    @Inject(SubjectService) private readonly subService:SubjectService
   ) {}
 
   public url: string = 'https://api-sales-app.josetovar.dev/products';
@@ -34,6 +36,9 @@ export class ProductsComponent {
 
   public updateProductForm: FormGroup = new FormGroup({});
   public products$!: Observable<any>;
+  public clickEventSubscription:Subscription=this.subService.getClickEvent().subscribe(()=>{
+    this.getProduct();
+  })
   ngOnInit() {
     this.getProduct()
   }
@@ -165,7 +170,7 @@ public getProduct(){
       .delete(`https://api-sales-app.josetovar.dev/products/${product.id}`)
       .subscribe({
         next: (response) => {
-      this.getProduct();
+      this.subService.sendClickEvent();
           if (response) {
             this.toastr.success(
               `Product with ID:${product.id} has been deleted successfully.`
@@ -263,7 +268,7 @@ public getProduct(){
         //   .get(`https://api-sales-app.josetovar.dev/products`)
         //   .subscribe((response) => {
         //     this.products$ = of(response);
-        this.getProduct();
+        this.subService.sendClickEvent();
             this.toastr.success('New product created');
             this.creating=false;
           // });

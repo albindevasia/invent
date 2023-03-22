@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Observable, of, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { SubjectService } from '../services/sub.service';
 
 @Component({
   selector: 'app-clients',
@@ -16,12 +17,17 @@ export class ClientsComponent implements OnInit{
   constructor(
     private readonly http: HttpClient,
     private readonly apiService:ApiService,
-    private readonly toastr:ToastrService
+    private readonly toastr:ToastrService,
+   @Inject(SubjectService) private readonly subService:SubjectService
+
    
   ) {}
 public url:string='https://api-sales-app.josetovar.dev/clients';
 public updateProductForm: FormGroup = new FormGroup({});
 public clients$!:Observable<any>;
+public clickEventSubscription:Subscription=this.subService.getClickEvent().subscribe(()=>{
+  this.getClient();
+})
 totalItems!:number
 ngOnInit(): void{
 this.getClient();
@@ -79,7 +85,7 @@ public deleteClient(client: any) {
     .delete(`https://api-sales-app.josetovar.dev/clients/${client.id}`)
     .subscribe({
       next: (response) => {
-      this.getClient();
+      this.subService.sendClickEvent();
         if (response) {
           this.toastr.success(
             `Client with ID:${client.id} has been deleted successfully.`
@@ -117,7 +123,7 @@ if(this.clientForm.valid){
  
       console.log(this.clientForm.value);
 
-       this.getClient();
+       this.subService.sendClickEvent();
         this.creating=false;
         this.toastr.success(`New Client  created`);
 

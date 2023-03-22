@@ -8,7 +8,7 @@ export class LoginGuard implements CanActivate {
   constructor() {}
 
   canActivate(): boolean {
-    const loggedIn = localStorage.getItem('loggedIn');
+    const loggedIn = localStorage.getItem('access_token');
 
     if (loggedIn) {
       return false;
