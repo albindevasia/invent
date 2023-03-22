@@ -23,27 +23,30 @@ public url:string='https://api-sales-app.josetovar.dev/clients';
 public updateProductForm: FormGroup = new FormGroup({});
 public clients$!:Observable<any>;
 totalItems!:number
-ngOnInit(){
+ngOnInit(): void{
+this.getClient();
+
+}
+public getClient(){
   this.clients$=this.http.get<{
-   id:number;
-   first_name:string;
-   last_name:string;
-   address:string;
-   city:string;
-   state:string;
-   country:string;
-   phone:number;
-   email:string
+    id:number;
+    first_name:string;
+    last_name:string;
+    address:string;
+    city:string;
+    state:string;
+    country:string;
+    phone:number;
+    email:string
+    
+ 
+   }>(this.url)
    
-
-  }>(this.url)
-  
-this.clients$.subscribe((clients:any)=>{
-   this.totalItems=clients.length;
-   console.log(clients.length)
-
-})
-
+ this.clients$.subscribe((clients:any)=>{
+    this.totalItems=clients.length;
+    console.log(clients.length)
+ 
+ })
 }
 
 client:any;
@@ -76,7 +79,7 @@ public deleteClient(client: any) {
     .delete(`https://api-sales-app.josetovar.dev/clients/${client.id}`)
     .subscribe({
       next: (response) => {
-      this.ngOnInit();
+      this.getClient();
         if (response) {
           this.toastr.success(
             `Client with ID:${client.id} has been deleted successfully.`
@@ -114,7 +117,7 @@ if(this.clientForm.valid){
  
       console.log(this.clientForm.value);
 
-       this.ngOnInit();
+       this.getClient();
         this.creating=false;
         this.toastr.success(`New Client  created`);
 

@@ -14,11 +14,11 @@ export class AppComponent {
 
   title = 'training';
   public log(){
-  const logOut = localStorage.getItem('loggedIn');
+  const logOut = localStorage.getItem('access_token');
 
  
   if (logOut) {
-    localStorage.removeItem('loggedIn');
+    localStorage.removeItem('access_token');
   }
 
   this.router.navigate([''])

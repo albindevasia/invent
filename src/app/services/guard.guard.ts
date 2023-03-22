@@ -11,10 +11,13 @@ export class GuardGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
      
-     
-    return false;
- 
-      }
+   const loggedIn=localStorage.getItem('access_token');
+   if(loggedIn){
+  return true;
+   }else{
+   return false
+   }
+    }    
   }
   
 

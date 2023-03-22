@@ -35,31 +35,33 @@ export class ProductsComponent {
   public updateProductForm: FormGroup = new FormGroup({});
   public products$!: Observable<any>;
   ngOnInit() {
-    this.products$ = this.http.get<{
-      id: number;
-      name: string;
-      price: number;
-      sku: string;
-      stock: number;
-    }>(this.url);
-
-    this.products$.subscribe((products: any[]) => {
-      // this.products$=response;
-      this.totalItems = products.length;
-      products.map((product: any) => {
-        this.updateProductForm.addControl(
-          `${product.id}`,
-          new FormGroup({
-            price: new FormControl(formatCurrency(product.price, 'en-US', '$')),
-            // price: new FormControl(product.price, Validators.min(0)),
-            stock: new FormControl(product.stock, Validators.min(0)),
-            switch: new FormControl(product.active),
-          })
-        );
-      });
-    });
+    this.getProduct()
   }
+public getProduct(){
+  this.products$ = this.http.get<{
+    id: number;
+    name: string;
+    price: number;
+    sku: string;
+    stock: number;
+  }>(this.url);
 
+  this.products$.subscribe((products: any[]) => {
+    // this.products$=response;
+    this.totalItems = products.length;
+    products.map((product: any) => {
+      this.updateProductForm.addControl(
+        `${product.id}`,
+        new FormGroup({
+          price: new FormControl(formatCurrency(product.price, 'en-US', '$')),
+          // price: new FormControl(product.price, Validators.min(0)),
+          stock: new FormControl(product.stock, Validators.min(0)),
+          switch: new FormControl(product.active),
+        })
+      );
+    });
+  });
+}
   public setFormatCurrency(product: any, event: any): void {
     const price = formatCurrency(
       this.getValueFromCurrency(event.target.value),
@@ -163,7 +165,7 @@ export class ProductsComponent {
       .delete(`https://api-sales-app.josetovar.dev/products/${product.id}`)
       .subscribe({
         next: (response) => {
-      this.ngOnInit();
+      this.getProduct();
           if (response) {
             this.toastr.success(
               `Product with ID:${product.id} has been deleted successfully.`
@@ -248,18 +250,20 @@ export class ProductsComponent {
     price: new FormControl(),
     sku: new FormControl(),
     stock: new FormControl(),
-    active: new FormControl(false),
+    active: new FormControl(true),
   });
 
   public updateNew() {
     this.apiService.createNew(this.newForm.value).subscribe((response) => {
       if (response) {
         console.log(this.newForm.value);
+        // this.newForm.reset
+       this.newForm.patchValue({active:true})
         // this.http
         //   .get(`https://api-sales-app.josetovar.dev/products`)
         //   .subscribe((response) => {
         //     this.products$ = of(response);
-        this.ngOnInit();
+        this.getProduct();
             this.toastr.success('New product created');
             this.creating=false;
           // });
