@@ -31,4 +31,15 @@ export class AppComponent {
 
 } 
 
+public logIn(){
+  const loggedIn = localStorage.getItem('access_token');
+
+  if (loggedIn) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+
 }
