@@ -49,7 +49,7 @@
                     
                   
                    
-                    <th
+                    <th 
                     scope="col"
                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
                   >
@@ -111,12 +111,12 @@
                   <!-- <input [(ngModel)]="product.Name"  name="Name" required  value="   {{ product.Name}}"> -->
                   {{ product.name}}
                   </td>
-                    <td
+                    <td 
                       class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
                     >
                     <!-- <input [(ngModel)]="product.Price"  name="Price" required  value="{{ product.Price  | currency:'USD'}}"> -->
                     <!-- {{ product.Price  | currency:'USD'}} -->
-                    <input
+                    <input  style="background-color: aliceblue;"
                     (change)="setFormatCurrency(product, $event)" 
                     formControlName="price"
                     type="text"
@@ -134,7 +134,7 @@
                     >
                       <!-- {{ product.stock}} -->
     
-                      <input
+                      <input  style="background-color: aliceblue;"
                       formControlName="stock"
                       type="number"
                       class="py-3 border px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"

@@ -1,17 +1,19 @@
 
 .fluid-container{
 background-image: url('/assets/log.webp');
-background-size: cover;
-
-section{
-    height:500px;
-    width:500px;
-    margin-left: 500px;
-   
-    
-    
-    div{
-        padding: 10px;
-    }
+// background-size: cover;
+height: 780px;
+div{
+    padding: 10px;
 }
+}
+section{
+    height:400px;
+    width:30%;
+   padding:40px;
+    margin-left: 500px;
+   background-image:url('/assets/gt.jpeg');
+    border-radius: 40px;
+
+   
 }
