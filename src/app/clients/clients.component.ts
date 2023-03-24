@@ -150,4 +150,27 @@ onPageCh(pageNumber: number) {
  
 }
 
+searchValue='';
+clients:any[]=[]
+onSearch(){
+   console.log(this.searchValue);
+
+  return this.clients.filter((client)=>{
+const searchValueLowercase=this.searchValue.toLowerCase();
+// console.log(this.searchValue)
+return client.first_name.toLowerCase().includes(searchValueLowercase)||
+ client.last_name.toLowerCase().includes(searchValueLowercase)||
+ client.address.toLowerCase().includes(searchValueLowercase)||
+client.city.toLowerCase().includes(searchValueLowercase)||
+client.state.toLowerCase().includes(searchValueLowercase)||
+client.country.toLowerCase().includes(searchValueLowercase)||
+client.phone.toString().includes(searchValueLowercase)
+||
+client.email.toLowerCase().includes(searchValueLowercase);
+
+
+  });
+  
+
+}
 }

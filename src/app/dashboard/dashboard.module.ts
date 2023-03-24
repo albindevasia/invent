@@ -16,6 +16,7 @@ import { SalesComponent } from '../sales/sales.component';
 
 
 
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -23,6 +24,7 @@ import { SalesComponent } from '../sales/sales.component';
     ProductsComponent,
     SalesComponent,
     PaginationComponent,
+ 
     PagePipe
   
    

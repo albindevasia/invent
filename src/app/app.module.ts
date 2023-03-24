@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AuthInterceptor } from './auth/authtoken.interceptor';
+// import { SearchComponent } from './search/search.component';
 // import { SalesComponent } from './sales/sales.component';
 
 
@@ -30,6 +31,7 @@ import { AuthInterceptor } from './auth/authtoken.interceptor';
     RegisterComponent,
     HomeComponent,
     SimpleProductComponent,
+    // SearchComponent,
     // SalesComponent,
     
    
