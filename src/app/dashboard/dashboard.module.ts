@@ -11,6 +11,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ClientsComponent } from '../clients/clients.component';
 import { ProductsComponent } from '../products/products.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { SalesComponent } from '../sales/sales.component';
 
 
 
@@ -20,6 +21,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     DashboardComponent,
     ClientsComponent,
     ProductsComponent,
+    SalesComponent,
     PaginationComponent,
     PagePipe
   

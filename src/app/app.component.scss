@@ -15,12 +15,20 @@
 
 
 
-.container {
-  
+.fluid-container {
+  border-top: 10px;
+ margin-right: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    top:0;
+    left:0;
+    background-size: contain;
+ header{
 
+   height:112px;
+   padding: 10px 10px 10px 10px;
+   border-left: 60px;
     ul {
       padding: auto;
       margin: 0;
@@ -34,6 +42,7 @@
         }
       }
     }
+  }
   }
 
   .active{

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ClientsComponent } from '../clients/clients.component';
 import { ProductsComponent } from '../products/products.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { SalesComponent } from '../sales/sales.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,10 @@ const routes: Routes = [
     },
     {
       path:'',redirectTo:'products',pathMatch:'full'
+    },
+    {
+      path:'sales',
+      component:SalesComponent
     }
    ]
  
