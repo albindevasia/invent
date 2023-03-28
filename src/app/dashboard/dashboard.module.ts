@@ -12,6 +12,8 @@ import { ClientsComponent } from '../clients/clients.component';
 import { ProductsComponent } from '../products/products.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SalesComponent } from '../sales/sales.component';
+import { SaleComponent } from '../sale/sale.component';
+import { NewSaleComponent } from '../new-sale/new-sale.component';
 
 
 
@@ -23,8 +25,9 @@ import { SalesComponent } from '../sales/sales.component';
     ClientsComponent,
     ProductsComponent,
     SalesComponent,
+    SaleComponent,
     PaginationComponent,
- 
+    NewSaleComponent,
     PagePipe
   
    

@@ -23,11 +23,42 @@ export class ApiService{
       }
 
 public api:string='https://api-sales-app.josetovar.dev/clients'
-
+public saleApi:string='https://api-sales-app.josetovar.dev/sales'
 public updateClient(client:any){
   return this.http.put(`${this.api}`,client)
 }
 public clientNew(client:any){
  return this.http.post(`${this.api}`,client)
+}
+
+public getSales(){
+  return this.http.get(this.saleApi)
+}
+
+public viewSale(sale_id:any){
+return this.http.get(`${this.saleApi}/${sale_id}`)
+}
+public addClient() {
+return  this.http.get<{
+    id: number;
+    first_name: string;
+    last_name: string;
+    address: string;
+    city: string;
+    state: string;
+    country: string;
+    phone: number;
+    email: string;
+  }>(`https://api-sales-app.josetovar.dev/clients`);
+}
+
+getProducts(){
+ return this.http.get<{
+    id: number;
+    name: string;
+    price: number;
+    sku: string;
+    stock: number;
+  }>(`https://api-sales-app.josetovar.dev/products`)
 }
 }

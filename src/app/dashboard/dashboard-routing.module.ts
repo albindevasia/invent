@@ -4,6 +4,7 @@ import { ClientsComponent } from '../clients/clients.component';
 import { ProductsComponent } from '../products/products.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { SalesComponent } from '../sales/sales.component';
+import { SaleComponent } from '../sale/sale.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
     {
       path:'sales',
       component:SalesComponent
+    },
+    {
+      path:'sale/:id',
+      component:SaleComponent
     }
    ]
  

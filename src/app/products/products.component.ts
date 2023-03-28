@@ -144,7 +144,7 @@ public getProduct(){
 
       this.http
         .put(
-          `https://api-sales-app.josetovar.dev/product-status/${product.id}?status=${status}`,
+          `https://api-sales-app.josetovar.dev/products/status/${product.id}?status=${status}`,
           {}
         )
         .subscribe({
