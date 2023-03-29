@@ -13,6 +13,7 @@ import { ApiService } from '../services/api.service';
 export class SalesComponent implements OnInit {
   constructor(
     private readonly apiService: ApiService,
+    private readonly http: HttpClient,
 
   ) {}
   public saleApi: string = 'https://api-sales-app.josetovar.dev/sales';
@@ -29,6 +30,24 @@ export class SalesComponent implements OnInit {
       console.log(res);
     });
   }
+viewing=false;
 
-
+  public url: string = 'https://api-sales-app.josetovar.dev/products';
+  public products$!: Observable<any>;
+  public getProduct(){
+    this.viewing=true;
+    this.products$ = this.http.get<{
+      id: number;
+      name: string;
+      price: number;
+      sku: string;
+      stock: number;
+    }>(this.url);
+  this.products$.subscribe((products:any)=>{
+    console.log(products)
+  })
+}
+cancelView(){
+  this.viewing=false;
+}
 }

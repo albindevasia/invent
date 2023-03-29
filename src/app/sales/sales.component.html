@@ -1,10 +1,93 @@
 <!-- Button trigger modal -->
-
+<div>
  <app-new-sale style="top:0;"></app-new-sale>
-  <!-- Sale Modal -->
-  <!-- <div class="modal fade" id="saleModal" tabindex="-1" aria-labelledby="saleModalLabel" aria-hidden="true"> -->
-    
+ <button class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" style="float:right" (click)="getProduct()">Products</button>
+  <button class="btn btn-secondary" (click)="cancelView()" style="float:right">Cancel</button>
+  </div> 
+<div *ngIf="viewing">
+  <table style="background-color:aqua">
+  <thead>
+    <tr>
 
+      <th 
+      scope="col"
+      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
+    >
+      Id
+    </th>
+    
+     
+      <th 
+      scope="col"
+      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
+    >
+      Name
+    </th>
+      <th
+        scope="col"
+        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
+      >
+        Price
+      </th>
+      <th
+        scope="col"
+        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
+      >
+     SKU
+      </th>
+      <th
+        scope="col"
+        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
+      >
+     Stock
+      </th>
+
+    </tr>
+  </thead>
+  <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+    <tr
+    
+ style="color:black"
+      *ngFor="let product of products$ | async"  
+      class="hover:bg-gray-100 dark:hover:bg-gray-700"
+    >
+    <td style="color:black"
+      class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200"
+    >
+    
+    {{ product.id}}
+    </td>
+     
+      <td style="color:black"
+      class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200"
+    >
+    
+    {{ product.name}}
+    </td>
+      <td  style="color:black"
+        class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
+      >
+
+      {{ product.price }} 
+   
+
+      </td>
+      <td style="color:black"
+        class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
+      >
+        {{ product.sku }}
+      </td>
+      <td style="color:black"
+        class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
+      >
+         {{ product.stock}}
+
+       
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
 <div class="fluid-container">
 
 <div class="flex flex-col">
