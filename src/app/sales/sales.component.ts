@@ -19,35 +19,27 @@ export class SalesComponent implements OnInit {
   public saleApi: string = 'https://api-sales-app.josetovar.dev/sales';
   
   public sales$!: Observable<any>;
- 
+  totalItems!:number;
   ngOnInit(): void {
     this.salesGet();
   }
 
   public salesGet() {
     this.sales$ = this.apiService.getSales();
-    this.sales$.subscribe((res) => {
-      console.log(res);
+    this.sales$.subscribe((sales) => {
+      console.log(sales);
+      this.totalItems=sales.length;
+      console.log(sales.length)
     });
   }
-viewing=false;
-
-  public url: string = 'https://api-sales-app.josetovar.dev/products';
-  public products$!: Observable<any>;
-  public getProduct(){
-    this.viewing=true;
-    this.products$ = this.http.get<{
-      id: number;
-      name: string;
-      price: number;
-      sku: string;
-      stock: number;
-    }>(this.url);
-  this.products$.subscribe((products:any)=>{
-    console.log(products)
-  })
-}
-cancelView(){
-  this.viewing=false;
-}
+  items!: any[];
+  currentPage: number=1;
+  pageSize: number = 5;
+  
+  // totalPages!: number;
+  
+  onSalePage(pageNumber: number) {
+    this.currentPage = pageNumber;
+   
+  }
 }

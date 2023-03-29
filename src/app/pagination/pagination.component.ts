@@ -22,6 +22,7 @@ export class PaginationComponent implements OnChanges  {
   
  @Input() clients$!:Observable<any>  
 @Input() products$!:Observable<any>
+@Input() sales$!:Observable<any>
   @Input() currentPage: number = 1;
   @Input() totalItems!: number;
   @Input() pageSize: number = 5;

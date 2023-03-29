@@ -1,7 +1,9 @@
-<button routerLink="../../sales" class="btn btn-primary" style="margin-left:1450px;" >Back</button>
+
+<div class="fluid-container">
+<button routerLink="../../sales" class="btn btn-primary"  >Back</button>
 
 <div class="flex flex-col">
-    <div class="-m-1.5 overflow-x-auto">
+    <div class="-m-1.5 ">
       <div class="p-1.5 min-w-full inline-block align-middle">
         <div class="overflow-hidden">
         <div style="text-align:center;background-color:rgb(210, 224, 197)"> 
@@ -39,10 +41,16 @@
                 <td style="color:black"
                 class="px-6 py-4 whitespace-nowrap text-sm text-black-800 dark:text-black-200"
               >
-               <b>Created_at:</b> {{ (sale$|async)?.created_at }}
+               <b>Created_at:</b> {{ (sale$|async)?.created_at | date}}
               </td>
                
                 
+              <td style="color:black"
+              class="px-6 py-4 whitespace-nowrap text-sm text-black-800 dark:text-black-200"
+            >
+             <b>Total:</b> {{ (sale$|async)?.total |  currency:'USD'}}
+            </td>
+             
             </tr>
 
         </tbody>
@@ -119,4 +127,5 @@
         </div>
       </div>
     </div>
+</div>
 </div>

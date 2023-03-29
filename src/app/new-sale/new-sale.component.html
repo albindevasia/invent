@@ -10,7 +10,7 @@
 <div *ngIf="editing">
   <div
     class="modal-dialog modal-dialog-centered"
-    style="width: 30%; background-color: rgb(198, 214, 206)"
+    style="width: 50%; background-color: rgb(198, 214, 206)"
   >
     <div class="modal-content">
       <div class="modal-header">
@@ -39,8 +39,10 @@
               placeholder="Search client"
             />
             <div *ngIf="filteredClients.length > 0" class="search-suggestions">
-              <ul class="list-group" *ngIf="!isClientSelected">
+              <ul class="list-group" *ngIf="!isClientSelected" 
+              >
                 <li
+                style="background-color: #ccc; " onmouseover="this.style.backgroundColor='#e9d8fd';" onmouseout="this.style.backgroundColor='#d4edda'"
                   class="list-group-item"
                   *ngFor="let client of filteredClients"
                   (click)="
@@ -66,15 +68,50 @@
                   *ngFor="let product of saleProducts.controls; let i = index"
                   [formGroupName]="i"
                 >
+               
                   <div class="row">
+                    <ng-container>
                     <div class="col">
                       <input
-                        type="number"
+                        type="text"
+                        id="product"
                         class="form-control"
                         formControlName="id"
+                        (input)="searchProduct()"
                         placeholder="Product ID"
+                        [attr.data-index]="i"
+                        [(ngModel)]="searchText"
                       />
                     </div>
+                    <div *ngIf="filteredProducts.length > 0" class="suggession-container">
+                      <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                        <thead>
+                          <tr >
+                            <th >Product ID</th>
+                            <th>Product Name</th>
+                            <th>Stock</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr
+                            *ngFor="
+                              let product of filteredProducts;
+                             
+                            
+                            "
+                            style="background-color: #ccc; " onmouseover="this.style.backgroundColor='#ffd9e6';" onmouseout="this.style.backgroundColor='#c9e4ff';"
+                             (click)="selectProduct(product.id, product.id)"
+                          >
+                            <td>{{ product.id }}</td>
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.stock }}</td>
+                            <td>{{ product.active ? 'Active' : 'Inactive' }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </ng-container>
 
                     <div class="col">
                       <input
@@ -119,7 +156,7 @@
               >
                 Add Sale
               </button>
-
+              <button (click)="addTocart()" class="btn btn-warning" [disabled]="saleForm.invalid">Add to Cart</button>
               <button
                 type="button"
                 class="btn btn-secondary"
@@ -128,6 +165,27 @@
                 Cancel
               </button>
             </div>
+            <div *ngIf="cartView" style="width:100%;" >
+              <h2>Cart Items:</h2>
+              <div *ngFor="let cartItem of cartItems; let i = index">
+                <div>ClientID: {{ cartItem.client_id }}</div>
+                <ul>
+                  <li *ngFor="let product of cartItem.products">
+                  Product-Id:  {{ product.id }} - Quantity:{{ product.quantity }}
+                  </li>
+                </ul>
+                <button (click)="removeFromCart(i)" class="btn btn-warning">Delete</button>
+              </div>
+              <button (click)="addCartItemToSales(cartItems)"  class="btn btn-primary">Add to Sales</button>
+              <button
+              type="button"
+              class="btn btn-warning"
+              (click)="cartClose()"
+            >
+              Cancel
+            </button>
+            </div>
+        
           </form>
         </div>
       </div>
