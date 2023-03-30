@@ -68,6 +68,7 @@ export class NewSaleComponent implements OnInit {
       },
     });
     this.saleForm.reset();
+    this.searchValue='';
     this.editing = false;
   }
   ngOnInit() {
@@ -96,6 +97,7 @@ export class NewSaleComponent implements OnInit {
         console.log(filteredClients);
         this.filteredClients = filteredClients;
       });
+      this.searchValue=''
   }
 
   selectClient(clientId: any, value: string) {
