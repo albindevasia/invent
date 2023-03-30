@@ -154,6 +154,7 @@ public addTocart(){
   this.saleForm.reset();
   this.saleForm.get('client_id')?.setValue('');
   this.isClientSelected = false;
+  this.searchValue='';
 }
 
 public removeFromCart(index: number) {
