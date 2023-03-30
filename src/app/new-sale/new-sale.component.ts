@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { map, Observable } from 'rxjs';
 import { ApiService } from '../services/api.service';
@@ -14,10 +14,15 @@ export class NewSaleComponent implements OnInit {
   newSale: any;
 
   constructor(
+    private readonly fb:FormBuilder,
     private readonly http: HttpClient,
     private apiService: ApiService,
     private readonly toastr: ToastrService
-  ) {}
+  ) {
+    
+
+  }
+
   isClientSelected: boolean = false;
   public selectedClientId!: number;
   public clients$!: Observable<any>;
@@ -35,10 +40,15 @@ export class NewSaleComponent implements OnInit {
     return this.saleForm.controls['products'] as FormArray;
   }
 
+
+
   public addProductTolist(): void {
     const newProduct: FormGroup = new FormGroup({
       id: new FormControl(null, Validators.required),
-      quantity: new FormControl(null, Validators.required),
+      quantity: new FormControl(null,Validators.required
+       
+       
+      ),
     });
     
     this.saleProducts.push(newProduct);
@@ -61,7 +71,7 @@ export class NewSaleComponent implements OnInit {
         this.toastr.success('New sale added successfully');
       },
       error: (error) => {
-        this.toastr.error('Product Id is not found');
+        this.toastr.error('Product Quantity is Out of Range');
       },
       complete: () => {
         console.log('Is good');
@@ -183,4 +193,10 @@ public showCartView = false;
 public cancelCart(){
   this.showCartView=false;
 }
+
+  productForm!: FormGroup;
+
+
+
+ 
 }
