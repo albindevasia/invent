@@ -67,6 +67,7 @@ export class NewSaleComponent implements OnInit {
         console.log('Is good');
       },
     });
+    this.saleForm.reset();
     this.editing = false;
   }
   ngOnInit() {
@@ -158,11 +159,10 @@ public removeFromCart(index: number) {
 }
 cartView=false;
 public addCartItemToSales(cartItem: any) {
-console.log(cartItem)
-console.log(this.saleApi)
+
   this.http.post(`${this.saleApi}`, cartItem).subscribe({
   
-    next: (res:any) => {
+    next: (res) => {
       console.log(res);
       this.toastr.success('Sale added successfully');
       this.cartItems.splice(this.cartItems.indexOf(cartItem), 1);
