@@ -97,7 +97,7 @@ export class NewSaleComponent implements OnInit {
         console.log(filteredClients);
         this.filteredClients = filteredClients;
       });
-      this.searchValue=''
+     
   }
 
   selectClient(clientId: any, value: string) {
@@ -106,7 +106,8 @@ export class NewSaleComponent implements OnInit {
     console.log(this.saleForm.value);
     this.searchValue = value;
     this.filteredClients = [];
-    this.isClientSelected = false;
+    this.isClientSelected =false;
+
   }
 
 searchText:string='';
@@ -153,7 +154,7 @@ public addTocart(){
   console.log(saleFormValue);
   this.saleForm.reset();
   this.saleForm.get('client_id')?.setValue('');
-  this.isClientSelected = false;
+
   this.searchValue='';
 }
 

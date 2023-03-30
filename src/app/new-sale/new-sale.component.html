@@ -202,11 +202,11 @@
                 <div class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
                   <div class="p-4 md:p-10">
                 <h2 class="text-lg font-bold text-gray-800 dark:text-red">Cart Items:</h2>
-                <div *ngFor="let cartItem of cartItems; let i = index">
+                <div *ngFor="let cartItem of cartItems; let i = index" class="card" style="border-color:black; padding:10px 10px 10px 10px;">
                   <div>ClientID: {{ cartItem.client_id }}</div>
                   <ul>
                     <li class="mt-2 text-gray-800 dark:text-gray-700" *ngFor="let product of cartItem.products">
-                      Product-Id: {{ product.id }} | Quantity: {{ product.quantity }}
+                      Product-Id: {{ product.id }}     |    Quantity: {{ product.quantity }}
                     </li>
                   </ul>
                 </div>
