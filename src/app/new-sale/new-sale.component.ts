@@ -178,4 +178,8 @@ public addCartItemToSales(cartItem: any) {
 public cartClose(){
   this.cartView=false;
 }
+public showCartView = false;
+public cancelCart(){
+  this.showCartView=false;
+}
 }
