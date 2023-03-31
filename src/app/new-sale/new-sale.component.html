@@ -159,8 +159,8 @@
                 class="btn btn-primary"
                 (click)="confirmSale()"
              
-               [disabled]="saleForm.invalid"
-               
+               [hidden]="saleForm.invalid"
+              
               >
                 Add Sale
               </button>
@@ -212,6 +212,10 @@
                       Product-Id: {{ product.id }}     |    Quantity: {{ product.quantity }}
                     </li>
                   </ul>
+                  <div>
+                    <button (click)="removeFromCart(i)" class="btn btn-warning">Delete</button>
+                <button (click)="addCartItemToSales(cartItem)"  class="btn btn-primary">Add to Sales</button>
+                  </div>
                 </div>
                 <button class="btn btn-secondary" (click)="cancelCart()">Close</button>
               </div>
