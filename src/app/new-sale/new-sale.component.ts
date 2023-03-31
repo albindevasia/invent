@@ -49,6 +49,7 @@ export class NewSaleComponent implements OnInit {
        
        
       ),
+      
     });
     
     this.saleProducts.push(newProduct);
