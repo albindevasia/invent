@@ -6,6 +6,7 @@ import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular
 import { ApiService } from '../services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { SubjectService } from '../services/sub.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-clients',
@@ -18,6 +19,8 @@ export class ClientsComponent implements OnInit{
     private readonly http: HttpClient,
     private readonly apiService:ApiService,
     private readonly toastr:ToastrService,
+    private readonly route:ActivatedRoute,
+    private readonly router:Router,
    @Inject(SubjectService) private readonly subService:SubjectService
 
    
@@ -31,6 +34,11 @@ public clickEventSubscription:Subscription=this.subService.getClickEvent().subsc
 totalItems!:number
 ngOnInit(): void{
 this.getClient();
+this.route.queryParams.subscribe((params:{[source:string]:string})=>{
+  if(params['source']){
+    this.creating=true;
+  }
+})
 
 }
 public getClient(){
@@ -119,16 +127,20 @@ public clientForm=new FormGroup({
 
 public newClient(){
 if(this.clientForm.valid){
-  this.apiService.clientNew(this.clientForm.value).subscribe((res)=>{
+  // this.apiService.clientNew(this.clientForm.value).subscribe((res)=>{
  
-      console.log(this.clientForm.value);
+  //     console.log(this.clientForm.value);
 
-       this.subService.sendClickEvent();
-        this.creating=false;
-        this.toastr.success(`New Client  created`);
+  //      this.subService.sendClickEvent();
+  //       this.creating=false;
+  //       this.toastr.success(`New Client  created`);
 
 
     
+  //  });
+   this.route.queryParams.subscribe((params:{[source:string]:string})=>{
+    if(params['source'])
+    this.router.navigate(['/dashboard/sales']),{queryParams:{source:'clients'}}
    })
 
   }

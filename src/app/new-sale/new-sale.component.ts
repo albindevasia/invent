@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { map, Observable } from 'rxjs';
 import { ApiService } from '../services/api.service';
@@ -17,7 +18,9 @@ export class NewSaleComponent implements OnInit {
     private readonly fb:FormBuilder,
     private readonly http: HttpClient,
     private apiService: ApiService,
-    private readonly toastr: ToastrService
+    private readonly toastr: ToastrService,
+    private readonly router:Router,
+    private readonly route:ActivatedRoute
   ) {
     
 
@@ -42,10 +45,15 @@ export class NewSaleComponent implements OnInit {
 
 
 
-  public addProductTolist(): void {
+  public addProductTolist(product:any) {
+// if(Number(quantity)>product.stock){
+//   this.toastr.error('Quantity should be less than stock')
+// }
     const newProduct: FormGroup = new FormGroup({
       id: new FormControl(null, Validators.required),
-      quantity: new FormControl(null,Validators.required
+      name:new FormControl(product.name),
+      price:new FormControl(product.price),
+      quantity: new FormControl(product.quantity
        
        
       ),
@@ -53,11 +61,12 @@ export class NewSaleComponent implements OnInit {
     });
     
     this.saleProducts.push(newProduct);
+    console.log(product.price)
   }
   public removeProduct(productIndex: any): void {
     this.saleProducts.removeAt(productIndex);
   }
-  editing = false;
+ @Input() editing = false;
   public cancel() {
     this.editing = false;
   }
@@ -85,7 +94,8 @@ export class NewSaleComponent implements OnInit {
   ngOnInit() {
     this.apiService.addClient();
     this.products$=this.http.get(this.productApi);
-  }
+  
+  } 
 
   // public getClient(){
 
@@ -128,14 +138,26 @@ searchProduct(){
   .pipe(
     (map((products:any)=>{
       return products.filter((product:any)=>
-      product.name.toLowerCase().includes(this.searchText.toLowerCase())
+      product.active == true &&
+
+       product.stock>0&&
+        product.name.toLowerCase().includes(this.searchText.toLowerCase())    
+      
+     
+    
       )
+      
+  
     })
+  
       )
   ).subscribe((filteredProducts)=>{
 this.filteredProducts=filteredProducts
   });
+
 }
+
+
 
 selectProduct(productId:any,value:string){
   const product=this.filteredProducts.find((product)=>product.id === productId ) ;
@@ -197,7 +219,20 @@ public cancelCart(){
 
   productForm!: FormGroup;
 
+ getTotalOrderPrice(){
+  let price=0;
+  for(const product of this.saleProducts.controls)
+  price += product.get('price')?.value * product.get('quantity')?.value;
+  return price
+ }
+  getTotalOrderQuantity(){
+    let total = 0
+    for(const product of this.saleProducts.controls)
+    total += product.get('quantity')?.value;
+    return total;
+  }
 
-
- 
+  clientForward(){
+    this.router.navigate(['/dashboard/clients'],{queryParams:{source:'sales'}})
+  }
 }

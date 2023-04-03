@@ -55,6 +55,7 @@
                 >
                   {{ client.first_name }} {{ client.last_name }}
                 </li>
+                <li><Button (click)="  clientForward()" class="btn btn-primary">+ Add New Client</Button></li>
               </ul>
             </div>
           </div>
@@ -73,8 +74,9 @@
                     <ng-container>
                     <div class="col">
                       <input
+                      
                         type="text"
-                        id="product"
+                     
                         class="form-control"
                         formControlName="id"
                         (input)="searchProduct()"
@@ -106,7 +108,7 @@
                             <td>{{ product.id }}</td>
                             <td>{{ product.name }}</td>
                             <td>{{ product.stock }}</td>
-                            <td>{{ product.active ? 'Active' : 'Inactive' }}</td>
+                            <td>{{ product.active }}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -115,6 +117,9 @@
 
                     <div class="col">
                       <input
+                    
+                    
+                      
                         type="number"
                         class="form-control"
                         formControlName="quantity"
@@ -133,13 +138,16 @@
                       </button>
                     </div>
                   </div>
+                  <div>
+                    <p><b>Sub Total:</b>{{ (product.value.price*product.value.quantity) | currency}} </p>
+                  </div>
                 </div>
 
                 <div class="text-center">
                   <button
                     type="button"
                     class="btn btn-primary"
-                    (click)="addProductTolist()"
+                    (click)="addProductTolist(products$)"
                     style="color: black"
                   >
                     Add Product
@@ -150,9 +158,14 @@
                     Show Cart
                   </button>
                 </div>
+                <div id="subtotal">
+                  <p><b>Total Products:</b>{{saleProducts.controls.length}} </p>
+                  <p><b>Total Items:</b>{{getTotalOrderQuantity()}}</p>
+                  <p><b>Total:</b> {{ getTotalOrderPrice()}}</p>
+                </div>
               </div>
             </div>
-
+          
             <div class="text-center">
               <button
                 type="button"
