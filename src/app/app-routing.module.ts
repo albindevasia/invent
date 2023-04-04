@@ -13,7 +13,8 @@ import { SimpleProductComponent } from './simple-product/simple-product.componen
 const routes: Routes = [
   {
     path:'',
-    component: HomeComponent
+    component: HomeComponent,
+    
   },
 
   {

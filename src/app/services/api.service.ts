@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 
 @Injectable({
     providedIn:'root'
@@ -52,7 +53,7 @@ return  this.http.get<{
   }>(`https://api-sales-app.josetovar.dev/clients`);
 }
 
-getProducts(){
+public getProducts(){
  return this.http.get<{
     id: number;
     name: string;
@@ -60,5 +61,16 @@ getProducts(){
     sku: string;
     stock: number;
   }>(`https://api-sales-app.josetovar.dev/products`)
+}
+
+public getAuthr(){
+return this.http.get(`${this.apiUrl}/auth`,{});
+}
+
+public getQuick(){
+  return this.http.get(`${this.apiUrl}/quick-sales`)
+}
+public getById(quickSaleId:number){
+return this.http.get(`${this.apiUrl}/quick-sales/${quickSaleId}`)
 }
 }

@@ -28,13 +28,7 @@ export class SalesComponent implements OnInit {
   totalItems!:number;
   ngOnInit(): void {
     this.salesGet();
-    this.route.queryParams.subscribe((params:{[source:string]:string})=>{
-      console.log(params)
-      if(params['clients']){
-        this.editing=true;
-      }
-   
-    })
+  
   }
 
   public salesGet() {

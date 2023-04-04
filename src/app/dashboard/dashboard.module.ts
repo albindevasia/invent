@@ -14,6 +14,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SalesComponent } from '../sales/sales.component';
 import { SaleComponent } from '../sale/sale.component';
 import { NewSaleComponent } from '../new-sale/new-sale.component';
+import { OverviewComponent } from '../overview/overview.component';
 
 
 
@@ -28,6 +29,8 @@ import { NewSaleComponent } from '../new-sale/new-sale.component';
     SaleComponent,
     PaginationComponent,
     NewSaleComponent,
+    OverviewComponent,
+   
     PagePipe
   
    

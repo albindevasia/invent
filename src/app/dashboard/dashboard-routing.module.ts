@@ -6,12 +6,19 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { SalesComponent } from '../sales/sales.component';
 import { SaleComponent } from '../sale/sale.component';
 
+import { NewSaleComponent } from '../new-sale/new-sale.component';
+import { OverviewComponent } from '../overview/overview.component';
+import { LoginGuard } from '../auth/login.guard';
+
 
 const routes: Routes = [
   {path:'',component:DashboardComponent,
-
+  //  canActivateChild: [LoginGuard],
    children:[
-
+ {
+  path:'',
+  component:OverviewComponent
+ },
 
     {
     path:'products',
@@ -31,7 +38,12 @@ const routes: Routes = [
     {
       path:'sale/:id',
       component:SaleComponent
+    },
+    {
+      path:'newsale',
+      component:NewSaleComponent
     }
+
    ]
  
    }

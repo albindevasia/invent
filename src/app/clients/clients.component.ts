@@ -140,7 +140,7 @@ if(this.clientForm.valid){
   //  });
    this.route.queryParams.subscribe((params:{[source:string]:string})=>{
     if(params['source'])
-    this.router.navigate(['/dashboard/sales']),{queryParams:{source:'clients'}}
+    this.router.navigate(['/dashboard/newsale']),{queryParams:{source:'clients'}}
    })
 
   }
