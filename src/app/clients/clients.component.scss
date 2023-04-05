@@ -1,5 +1,6 @@
 .fluid-container{
-    background-image: url('/assets/log.webp');
+    background-size: 1000px;
+     background-image:url('/assets/fur.jpeg');
     font-weight: 1000;
 
     th{
@@ -7,5 +8,8 @@
         font-style: italic;
         color: red;
         background-color: rgb(156, 189, 189);
+    }
+    tr{
+       color:black
     }
 }

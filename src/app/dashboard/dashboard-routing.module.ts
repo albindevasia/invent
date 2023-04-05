@@ -9,11 +9,15 @@ import { SaleComponent } from '../sale/sale.component';
 import { NewSaleComponent } from '../new-sale/new-sale.component';
 import { OverviewComponent } from '../overview/overview.component';
 import { LoginGuard } from '../auth/login.guard';
+import { SaleTableComponent } from '../sale-table/sale-table.component';
+import { QuicksaleComponent } from '../quicksale/quicksale.component';
+import { ViewQuickComponent } from '../view-quick/view-quick.component';
+
 
 
 const routes: Routes = [
   {path:'',component:DashboardComponent,
-  //  canActivateChild: [LoginGuard],
+   canActivateChild: [LoginGuard],
    children:[
  {
   path:'',
@@ -33,16 +37,36 @@ const routes: Routes = [
     },
     {
       path:'sales',
-      component:SalesComponent
+      component:SalesComponent,
+      children:[
+        {
+        path:'saleTable',
+        component:SaleTableComponent,
+        },
+        {
+          path:'quicksale',
+          component:QuicksaleComponent
+        },
+        {
+          path:'',
+            redirectTo:'saleTable',pathMatch:'full'
+        },
+        {
+          path:'newsale',
+          component:NewSaleComponent
+        },
+        {
+          path:'saleTable/:id',
+          component:SaleComponent
+        },
+        {
+          path:'quicksale/:id',
+          component:ViewQuickComponent
+        },
+        
+      ]
     },
-    {
-      path:'sale/:id',
-      component:SaleComponent
-    },
-    {
-      path:'newsale',
-      component:NewSaleComponent
-    }
+  
 
    ]
  

@@ -18,6 +18,10 @@ import { AuthInterceptor } from './auth/authtoken.interceptor';
 import { SaleComponent } from './sale/sale.component';
 import { NewSaleComponent } from './new-sale/new-sale.component';
 import { OverviewComponent } from './overview/overview.component';
+import { QuicksaleComponent } from './quicksale/quicksale.component';
+import { SaleTableComponent } from './sale-table/sale-table.component';
+import { ViewQuickComponent } from './view-quick/view-quick.component';
+import { UseComponent } from './use/use.component';
 
 // import { SearchComponent } from './search/search.component';
 // import { SalesComponent } from './sales/sales.component';
@@ -35,6 +39,10 @@ import { OverviewComponent } from './overview/overview.component';
     RegisterComponent,
     HomeComponent,
     SimpleProductComponent,
+    // UseComponent,
+    // ViewQuickComponent,
+    // QuicksaleComponent,
+    // SaleTableComponent,
     
    
    

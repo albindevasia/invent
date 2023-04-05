@@ -39,6 +39,10 @@ public getSales(){
 public viewSale(sale_id:any){
 return this.http.get(`${this.saleApi}/${sale_id}`)
 }
+ createSale(sale:any){
+    return this.http.post(`${this.apiUrl}/sales`, sale);
+  }
+
 public addClient() {
 return  this.http.get<{
     id: number;
@@ -64,7 +68,7 @@ public getProducts(){
 }
 
 public getAuthr(){
-return this.http.get(`${this.apiUrl}/auth`,{});
+return this.http.post(`${this.apiUrl}/auth`,null);
 }
 
 public getQuick(){

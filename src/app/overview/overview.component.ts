@@ -19,8 +19,8 @@ this.apiService.getQuick().subscribe(sales=>{
   this.quickSale=sales
 })
 }
-getNavigate(saleId:number){
-  this.router.navigate(['/dashboard/newsale']),{queryParams:{quicksale:saleId}}
+getNavigate(id:number){
+  this.router.navigate(['/dashboard/sales/newsale'],{queryParams:{quick_sale:id}})
 
 }
 }

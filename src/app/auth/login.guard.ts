@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate, Router,ActivatedRouteSnapshot,RouterStateSnapshot } from '@angular/router';
 import { ApiService } from '../services/api.service';
 
 @Injectable({
@@ -15,17 +15,17 @@ export class LoginGuard implements CanActivate {
     this.apiService.getAuthr().subscribe({
       next:()=>{},
       error:()=>{
-        this.router.navigateByUrl('/load/login');
+        this.router.navigate(['/load/login']);
         return false
       },
       complete:()=>true
     });
   }
 
-  canActivate():any {
+  canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot):any {
    this.getAuth()
   }
-  canActivateChild():any{
+  canActivateChild(route: ActivatedRouteSnapshot,state: RouterStateSnapshot):any{
     this.getAuth()
   }
 } 

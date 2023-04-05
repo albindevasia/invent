@@ -2,3 +2,12 @@
     background-image: url('/assets/dam.avif');
     
 }
+
+.active{
+    background-color: #c1559f;
+  color: white;
+  transition: background-color 0.5s ease;
+  }
+  .active:hover{
+    background-color: #555;
+  }
