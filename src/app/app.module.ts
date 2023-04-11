@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 // import { DashboardComponent } from './lazy/dashboard/dashboard.component';
 import { LoginComponent } from './load/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './reg/register/register.component';
 import {  HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { SimpleProductComponent } from './simple-product/simple-product.component';
@@ -21,6 +21,7 @@ import { OverviewComponent } from './overview/overview.component';
 import { QuicksaleComponent } from './quicksale/quicksale.component';
 import { SaleTableComponent } from './sale-table/sale-table.component';
 import { ViewQuickComponent } from './view-quick/view-quick.component';
+import { NewquickComponent } from './newquick/newquick.component';
 
 
 // import { SearchComponent } from './search/search.component';
@@ -36,9 +37,10 @@ import { ViewQuickComponent } from './view-quick/view-quick.component';
     AppComponent,
     // DashboardComponent,
     // LoginComponent,
-    RegisterComponent,
+    // RegisterComponent,
     HomeComponent,
     SimpleProductComponent,
+    // NewquickComponent,
     // UseComponent,
     // ViewQuickComponent,
     // QuicksaleComponent,

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {  HttpClientModule } from '@angular/common/http';
 
-import { DashboardComponent } from '../dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { PaginationComponent } from '../pagination/pagination.component';
@@ -18,6 +18,7 @@ import { OverviewComponent } from '../overview/overview.component';
 import { SaleTableComponent } from '../sale-table/sale-table.component';
 import { QuicksaleComponent } from '../quicksale/quicksale.component';
 import { ViewQuickComponent } from '../view-quick/view-quick.component';
+import { NewquickComponent } from '../newquick/newquick.component';
 
 
 
@@ -36,6 +37,7 @@ import { ViewQuickComponent } from '../view-quick/view-quick.component';
     SaleTableComponent,
     QuicksaleComponent,
    ViewQuickComponent,
+   NewquickComponent,
   
     PagePipe
   

@@ -5,7 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { GuardGuard } from './services/guard.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './load/login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './reg/register/register.component';
 import { SimpleProductComponent } from './simple-product/simple-product.component';
 
 
@@ -28,11 +28,17 @@ const routes: Routes = [
     // component:DashboardComponent,\
     loadChildren:()=>import('./dashboard/dashboard.module').then(m=>m.DashboardModule), canActivate:[GuardGuard]
     // canActivate:[GuardGuard]
-  },                                 
-
+  },
+                                   
+  // {
+  //   path:'dash',
+  //   // component:DashboardComponent,\
+  //   loadChildren:()=>import('./dash/dash.module').then(m=>m.DashModule), canActivate:[GuardGuard]
+  //   // canActivate:[GuardGuard]
+  // },
   {
-    path:'register',
-    component: RegisterComponent
+    path:'reg',
+    loadChildren:()=>import('./reg/reg.module').then(m=>m.RegModule)
   },
   
 

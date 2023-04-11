@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClientsComponent } from '../clients/clients.component';
 import { ProductsComponent } from '../products/products.component';
-import { DashboardComponent } from '../dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard.component';
 import { SalesComponent } from '../sales/sales.component';
 import { SaleComponent } from '../sale/sale.component';
 
@@ -12,6 +12,7 @@ import { LoginGuard } from '../auth/login.guard';
 import { SaleTableComponent } from '../sale-table/sale-table.component';
 import { QuicksaleComponent } from '../quicksale/quicksale.component';
 import { ViewQuickComponent } from '../view-quick/view-quick.component';
+import { NewquickComponent } from '../newquick/newquick.component';
 
 
 
@@ -63,6 +64,10 @@ const routes: Routes = [
           path:'quicksale/:id',
           component:ViewQuickComponent
         },
+        {
+          path:'newQuick',
+          component:NewquickComponent
+        }
         
       ]
     },

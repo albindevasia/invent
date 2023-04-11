@@ -7,6 +7,7 @@ import { map, Observable, of } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { formatCurrency } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,5 +15,20 @@ import { formatCurrency } from '@angular/common';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
+  constructor(private readonly router:Router){}
+  public logOut(){
+
+    const logOt = localStorage.getItem('access_token');
   
+   
+    if (logOt) {
+      localStorage.removeItem('access_token');
+    }
+  
+    this.router.navigate([''])
+  
+  
+  
+  
+  }
 }

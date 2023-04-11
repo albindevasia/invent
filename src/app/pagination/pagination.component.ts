@@ -19,7 +19,7 @@ export class PaginationComponent implements OnChanges  {
 
 
   constructor(private cdr: ChangeDetectorRef) {}
-  
+  @Input () quickSale$!:Observable<any>
  @Input() clients$!:Observable<any>  
 @Input() products$!:Observable<any>
 @Input() sales$!:Observable<any>

@@ -77,4 +77,7 @@ public getQuick(){
 public getById(quickSaleId:number){
 return this.http.get(`${this.apiUrl}/quick-sales/${quickSaleId}`)
 }
+public createQuickSale(quick_sale:any){
+  return this.http.post(`${this.apiUrl}/quick-sales`,quick_sale)
+}
 }
