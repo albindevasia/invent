@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {HttpClient} from '@angular/common/http'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-constructor(private readonly router:Router,private readonly http:HttpClient){}
+constructor(private readonly router:Router,private readonly http:HttpClient,private readonly toastr:ToastrService){}
 
 public registerForm=new FormGroup({
   id:new FormControl(0),
@@ -39,12 +40,15 @@ public register(){
  this.http.post(Url,this.registerForm.value).subscribe(response=>{
   if(response){
     console.log(response);
+    this.toastr.success('Registered the new User')
     this.router.navigate(['/load/login']);
   }
 })
 
 }
-
+public canCel(){
+  this.toastr.error('Not registered any user')
+}
 
 
 

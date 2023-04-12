@@ -12,11 +12,14 @@ import { SimpleProductComponent } from './simple-product/simple-product.componen
 
 const routes: Routes = [
   {
-    path:'',
+    path:'home',
     component: HomeComponent,
     
   },
-
+{
+  path:'',
+  redirectTo:'load',pathMatch:'full'
+},
   {
     path:'load',
     loadChildren:()=>import('./load/load.module').then(m=>m.LoadModule),

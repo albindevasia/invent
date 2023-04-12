@@ -120,8 +120,7 @@ export class NewquickComponent {
     const previous_state =this.dataStorage.newSale_state;
     if(previous_state?.selectedClient || previous_state?.salesForm?.get('products')){
       this.quickSaleForm=previous_state.salesForm;
-      // this.selectedClient=previous_state.selectedClient;
-      // this.searchingClients=previous_state.searchingClients;
+
       this.searchingProducts=previous_state.searchingProducts;
     }
     

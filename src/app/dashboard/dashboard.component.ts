@@ -25,7 +25,7 @@ export class DashboardComponent {
       localStorage.removeItem('access_token');
     }
   
-    this.router.navigate([''])
+    this.router.navigate(['../load/login'])
   
   
   

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {  Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class LoginComponent {
 
-  constructor(private readonly router:Router,private readonly http:HttpClient){}
+  constructor(private readonly router:Router,private readonly http:HttpClient,private readonly toastr:ToastrService){}
 
   public loginForm=new FormGroup({
     email:new FormControl('',Validators.required),
@@ -50,7 +51,10 @@ this.http.post(url,body).subscribe((response:any)=>{
       JSON.stringify(response.access_token)
       
     );
+    this.toastr.success('Login successfully completed')
     this.router.navigate(['/dashboard'])
+  }else{
+    this.toastr.error('Check your email and password')
   }
 
 
