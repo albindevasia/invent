@@ -9,19 +9,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './reg/register/register.component';
 import {  HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
-import { SimpleProductComponent } from './simple-product/simple-product.component';
+import { SimpleProductComponent } from './modules/dashboard/products/simple-product/simple-product.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-import { AuthInterceptor } from './auth/authtoken.interceptor';
-import { SaleComponent } from './sale/sale.component';
-import { NewSaleComponent } from './new-sale/new-sale.component';
-import { OverviewComponent } from './overview/overview.component';
-import { QuicksaleComponent } from './quicksale/quicksale.component';
-import { SaleTableComponent } from './sale-table/sale-table.component';
-import { ViewQuickComponent } from './view-quick/view-quick.component';
-import { NewquickComponent } from './newquick/newquick.component';
+import { AuthInterceptor } from './core/Interceptors/authtoken.interceptor';
+import { SaleComponent } from './modules/dashboard/sales/sale/sale.component';
+import { NewSaleComponent } from './modules/dashboard/sales/new-sale/new-sale.component';
+import { OverviewComponent } from './modules/dashboard/overview/overview.component';
+import { QuicksaleComponent } from './modules/dashboard/sales/quicksale/quicksale.component';
+import { SaleTableComponent } from './modules/dashboard/sales/sale-table/sale-table.component';
+import { ViewQuickComponent } from './modules/dashboard/sales/view-quick/view-quick.component';
+import { NewquickComponent } from './modules/dashboard/sales/newquick/newquick.component';
 
 
 // import { SearchComponent } from './search/search.component';

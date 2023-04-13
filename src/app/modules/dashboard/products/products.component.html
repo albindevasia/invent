@@ -1,0 +1,295 @@
+<div class="class bg-products">
+    <div class="flex items-center mb-6">
+      <div class="mr-6">
+       <label for="hs-select-label"
+       
+       class="block text-sm font-medium mb-2 dark:text-white">Active Status</label>
+       <select 
+      
+       (change)="setFilters($event)"
+        id="hs-select-label"
+       class="py-3 px-4 pr-9 block w-full border border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"  >
+       <option value=''>All Products</option>
+       <option value="true">Only active products</option>
+       <option value="false">Only inactive products</option>
+      </select>
+      </div>
+    
+      <div class="mr-6">
+        <label for="hs-select-label"
+        
+        class="block text-sm font-medium mb-2 dark:text-white">Stock Status</label>
+        <select 
+       
+        (change)="setStock($event)"
+         id="hs-select-label"
+        class="py-3 px-4 pr-9 block w-full border border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"  >
+        <option value='All'>All </option>
+        <option value="0">Out of Stock</option>
+        <option value="1">In Stock</option>
+       </select>
+       </div>
+    </div>
+    <button class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" (click)="newProduct()" style="float:right;">ADDNEW</button>
+    
+    <app-pagination [products$]="products$" (pageChanged)="onPageChanged($event)"></app-pagination> 
+    <!-- (pageChanged)="onPageChanged($event)" -->
+    <!-- 
+    [totalPages]="totalPages" [currentPage]="currentPage" -->
+    <div class="flex flex-col">
+        <div class="-m-1.5 overflow-x-auto">
+          <div class="p-1.5 min-w-full inline-block align-middle">
+            <div class="overflow-hidden">
+          <ng-container>
+              <form [formGroup]="updateProductForm">
+              <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <thead>
+                  <tr >
+    
+                    
+                  
+                   
+                    <th 
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase bg-blue-gray-100 text-black"
+                  >
+                    Name
+                  </th>
+                    <th 
+                      scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase bg-blue-gray-100 text-black"
+                    >
+                      Price
+                    </th>
+                    <th 
+                      scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase bg-blue-gray-100 text-black"
+                    >
+                   SKU
+                    </th>
+                    <th 
+                      scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase bg-blue-gray-100 text-black"
+                    >
+                   Stock
+                    </th>
+    
+                    <th
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase bg-blue-gray-100 text-black"
+                  >
+                   Active
+                  </th>
+    
+    
+                    <th 
+                      scope="col"
+                      class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase bg-blue-gray-100 text-black"
+                    >
+                      Action
+                    </th>
+                    <th 
+                    scope="col"
+                    class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase bg-blue-gray-100 text-black"
+                  >
+                    Action
+                  </th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                  <tr
+                  
+                  [formGroupName]="product.id"
+                    *ngFor="let product of (products$ |page:currentPage:pageSize) |async"  
+                    class="hover:bg-gray-100 dark:hover:bg-gray-700"
+                  >
+                  <!-- [class.disabled]="isProductDisabled(product) -->
+                   
+                    <td
+                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200"
+                  >
+                  <!-- <input [(ngModel)]="product.Name"  name="Name" required  value="   {{ product.Name}}"> -->
+                  {{ product.name}}
+                  </td>
+                    <td 
+                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
+                    >
+                    <!-- <input [(ngModel)]="product.Price"  name="Price" required  value="{{ product.Price  | currency:'USD'}}"> -->
+                    <!-- {{ product.Price  | currency:'USD'}} -->
+                    <input class="bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm text-gray-700 leading-5 focus:outline-none focus:shadow-outline-blue focus:border-blue-300"  style=" color:rgb(245, 247, 245);"
+                    (change)="setFormatCurrency(product, $event)" 
+                    formControlName="price"
+                    type="text"
+                    class="py-3 border px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                  />
+          
+                    </td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
+                    >
+                      {{ product.sku }}
+                    </td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
+                    >
+                      <!-- {{ product.stock}} -->
+    
+                      <input style="color:rgb(245, 247, 245)" class="bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm text-gray-700 leading-5 focus:outline-none focus:shadow-outline-blue focus:border-blue-300"  
+                      formControlName="stock"
+                      type="number"
+                      class="py-3 border px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                    />
+                    </td>
+    
+                    <td> 
+                      <!-- <label class="switch">
+                        <input type="checkbox"  >
+                        <span class="slider round"></span>
+                      </label> -->
+    <!-- 
+                      <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked >
+                        <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+                      </div> -->
+    
+                      <input class="bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm text-gray-700 leading-5 focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                      (change)="updateProductStatus(product, $event)"
+                      [checked]="product.active"
+                      type="checkbox"
+                    
+                      id="hs-basic-usage"
+                      class="relative w-[3.25rem] h-7 bg-gray-100 checked:bg-none checked:bg-blue-600 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-blue-600 focus:ring-blue-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-blue-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
+                    />
+                    <label for="hs-basic-usage" class="sr-only">switch</label>
+    
+    
+                     </td>
+                    <!-- <td
+                      class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+                    >
+                      <a routerLink="/product/:{{product}}" class="text-blue-500 hover:text-blue-700" href="#">View</a>
+                    </td> -->
+                    <!-- <td
+                      class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+                    >
+                    
+                     <button type="submit" (click)="submit()">Update</button>
+                      
+                  
+                    </td> -->
+                    <td
+                    class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+                  >
+                    <button
+                      [disabled]="setDisableValue(product)"
+                      (click)="setUpdatedValues(product)"
+                      type="button"
+                     class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
+    
+                    >
+                      Update
+                    </button>
+                    </td>
+                    
+    
+                    <!-- class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" -->
+    
+                    
+           <td
+                    class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+                  >
+                    <button class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" (click)="deleteProduct(product)">Delete</button>
+                  </td>
+                  </tr> 
+     
+                  <!-- <tr *ngIf="editingUser" style="margin-right:200px;">
+                    <h2>Edit Item</h2>
+                    <div>
+                     <label for="name"> ProductName
+                      <input [(ngModel)]="editingUser.Name"  required>
+                
+                    </label>
+                  </div>
+                  <div>
+                    <label for="price">Price
+                      <input [(ngModel)]="editingUser.Price" name="Price" required>
+                    </label>
+                  </div>
+                      <button  (click)="saveUser()">Save</button>
+                    
+                  </tr>    -->
+                <div *ngIf="creating">
+                  <div class="modal-dialog mr-200px;" role="document"  >
+                    <div class="modal-content" >
+                      <form [formGroup]="newForm" (ngSubmit)="updateNew()">
+                      <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Create New</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      </div>
+                      
+                      <div class="modal-body">
+                        <div style="display:flex; justify-content:space-between; background-color:aquamarine">
+                          <div class="form-group">
+                            <label for="name">Name</label>
+                            <input class=" text-black" type="text" class="form-control" name="name" required  formControlName="name" class="dashboard-input" style="background-color:rgb(222, 226, 232);color:black">
+                          </div>
+                          <div class="form-group">
+                            <label for="price">Price</label>
+                            <input class=" text-black" type="number" class="form-control" name="price" required  placeholder="" formControlName="price" class="dashboard-input"  style="background-color:rgb(232, 235, 238);color:black">
+                          </div>
+                          <div class="form-group">
+                            <label for="sku">SKU</label>
+                            <input class=" text-black" type="number" class="form-control" name="sku" required  placeholder=""  formControlName="sku" class="dashboard-input"  style="background-color:rgb(229, 233, 237);color:black">
+                          </div>
+    
+                          <div class="form-group">
+                            <label for="stock">STOCK</label>
+                            <input class=" text-black" type="number" class="form-control" name="stock" required  placeholder=""  formControlName="stock" class="dashboard-input"  style="background-color:rgb(222, 227, 233);color:black">
+                          </div>
+    
+                          <div class="form-group">
+                            <label class="switch">Active
+                              <input class=" text-black" type="checkbox"     formControlName="active"  >
+                           
+                              
+                            </label>
+                          </div>
+       <!-- <div class="relative flex items-start w-full">
+                                <div class="flex items-center h-5">
+                                  <input id="hs-horizontal-list-group-item-checkbox-1" name="hs-horizontal-list-group-item-checkbox-1" type="checkbox" class="border-gray-200 rounded dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" checked   formControlName="active">
+                            
+                                <label for="hs-horizontal-list-group-item-checkbox-1" class="ml-3.5 block w-full text-sm text-gray-600 dark:text-gray-500">
+                                  Active
+                                </label>
+                              </div>
+                              </div> -->
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                   <button class="btn btn-secondary" type="button" (click)="cancel()">cancel</button>
+                        <button type="submit" class="btn btn-primary" >Save changes</button>
+                      </div>
+                   
+                    </form>
+                    </div>
+                  </div>
+    
+                </div>
+             
+                </tbody>
+              </table>
+            </form>
+           
+         
+          </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+    <!-- <app-pagination></app-pagination> -->
+    
+    
+    

@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  
 })
 export class RegisterComponent {
 constructor(private readonly router:Router,private readonly http:HttpClient,private readonly toastr:ToastrService){}
@@ -39,7 +39,7 @@ public register(){
  
  this.http.post(Url,this.registerForm.value).subscribe(response=>{
   if(response){
-    console.log(response);
+  
     this.toastr.success('Registered the new User')
     this.router.navigate(['/load/login']);
   }

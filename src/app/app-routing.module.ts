@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginGuard } from './auth/login.guard';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { GuardGuard } from './services/guard.guard';
+import { LoginGuard } from './Authentification/login.guard';
+import { DashboardComponent } from './modules/dashboard/dashboard.component';
+import { GuardGuard } from './Authentification/guard.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './load/login/login.component';
 import { RegisterComponent } from './reg/register/register.component';
-import { SimpleProductComponent } from './simple-product/simple-product.component';
+import { SimpleProductComponent } from './modules/dashboard/products/simple-product/simple-product.component';
 
 
 
@@ -29,7 +29,7 @@ const routes: Routes = [
   {
     path:'dashboard',
     // component:DashboardComponent,\
-    loadChildren:()=>import('./dashboard/dashboard.module').then(m=>m.DashboardModule), canActivate:[GuardGuard]
+    loadChildren:()=>import('./modules/dashboard/dashboard.module').then(m=>m.DashboardModule), canActivate:[GuardGuard]
     // canActivate:[GuardGuard]
   },
                                    

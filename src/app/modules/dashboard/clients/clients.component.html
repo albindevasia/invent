@@ -1,0 +1,270 @@
+<div style="display:flex; justify-content:space-between">
+<!-- <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search> -->
+
+
+<button (click)="add()"  class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-green-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">AddNew + </button>
+</div>
+<div *ngIf="creating">
+  <div class="modal-dialog mr-200px;" role="document" >
+    <div class="modal-content" >
+      <form [formGroup]="clientForm" (ngSubmit)="newClient()">
+      <div class="modal-header">
+  <h2 class="modal-title" id="myModalLabel">Add New Client Details</h2>
+      </div>
+  
+      <div class="modal-body" style="display:flex;justify-content:space-between;background-color:darkcyan">
+        <div class="form-group">
+    <label style="margin-left:30px;">FirstName:</label>
+    <input type="text" class="form-control"  name="first_name" required formControlName="first_name" placeholder="firstname" style="width:200px;background-color:rgb(203, 223, 188);margin-left:30px;">
+        </div>
+        <div class="form-group">
+    <label>LastName:</label>
+    <input type="text" class="form-control" name="last_name" required formControlName="last_name" placeholder="lastname" style="width:200px;background-color:rgb(203, 223, 188)">
+        </div>
+        <div class="form-group">
+    <label>Address:</label>
+    <input type="text" class="form-control" name="address" required formControlName="address" placeholder="address" style="width:200px;background-color:rgb(203, 223, 188)">
+        </div>
+        <div class="form-group">
+    <label style="margin-right:30px;">City:</label>
+    <input type="text" class="form-control" name="city" required formControlName="city" placeholder="city" style="width:200px;background-color:rgb(203, 223, 188);margin-right:30px;">
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;background-color:darkcyan">
+        <div class="form-group">
+    <label style="margin-left:30px;">State:</label>
+    <input type="text" class="form-control" name="state" required formControlName="state" placeholder="state" style="width:200px;background-color:rgb(203, 223, 188);margin-left:30px;">
+        </div>
+        <div class="form-group">
+    <label>Country:</label>
+    <input type="text" class="form-control" name="country" required formControlName="country" placeholder="country" style="width:200px;background-color:rgb(203, 223, 188)">
+        </div>
+        <div class="form-group">
+    <label>Phone:</label>
+    <input type="number" class="form-control" name="phone" required formControlName="phone" placeholder="phone" style="width:200px;background-color:rgb(203, 223, 188)">
+        </div>
+        <div class="form-group">
+    <label style="margin-right:30px;">Email:</label>
+    <input type="text" class="form-control" name="email" required formControlName="email" placeholder="email" style="width:200px;background-color:rgb(203, 223, 188);margin-right:30px;">
+        </div>
+      </div>
+      <div class="modal-footer">
+    <button type="submit"  class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" >Save</button>
+    <button  type="button" (click)="cancelCreation()" class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Cancel</button>
+      </div>
+    </form>
+  
+  </div>
+</div>
+</div>
+<div class="fluid-container bg-clients bg-contain font-thick"  >
+
+
+<div class="flex flex-col">
+
+    <div class="-m-1.5   ">
+      <!-- overflow-x-auto -->
+      <div class="p-1.5 min-w-full inline-block align-middle">
+        <div class="overflow-hidden">
+          <!-- class="overflow-hidden" -->
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700" style="background-size:cover;" >
+                <thead>
+                  <tr>
+    
+                    
+                  
+                   
+                    <th 
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase text-lg italic text-red-500 bg-teal-200"
+                  >
+                 FirstName
+                </th>
+                <th 
+                scope="col"
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase text-lg italic text-red-500 bg-teal-200"
+              >
+             LastName
+            </th>
+            <th 
+            scope="col"
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase text-lg italic text-red-500 bg-teal-200"
+          >
+         Address
+        </th>
+        <th 
+        scope="col"
+        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase text-lg italic text-red-500 bg-teal-200"
+      >
+     City
+    </th>
+    <th 
+    scope="col"
+    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase text-lg italic text-red-500 bg-teal-200"
+  >
+ State
+</th>
+<th 
+scope="col"
+class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase text-lg italic text-red-500 bg-teal-200"
+>
+Country
+</th>
+<th 
+scope="col"
+class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase text-lg italic text-red-500 bg-teal-200"
+>
+Phone
+</th>
+<th 
+scope="col"
+class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase text-lg italic text-red-500 bg-teal-200"
+>
+Email
+</th>
+<th 
+scope="col"
+class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase text-lg italic text-red-500 bg-teal-200"
+>
+Action
+</th>
+<th 
+scope="col"
+class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase text-lg italic text-red-500 bg-teal-200"
+>
+Action
+</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+    <tr 
+    
+   *ngFor="let client of (clients$ |page:currentPage:pageSize) | async"
+    >
+
+    <!-- [class.disabled]="isProductDisabled(product) -->
+     
+      <td style="color:black"
+      class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200"
+    >
+ 
+   
+  {{client.first_name}}
+    </td>
+      <td style="color:black"
+        class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
+      >
+     
+    {{client.last_name}}
+
+      </td>
+      <td style="color:black"
+        class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
+      >
+  {{client.address}}
+      </td>
+      <td style="color:black"
+        class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
+      >
+        
+    {{client.city}}
+       
+      </td>
+
+      <td style="color:black" class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
+      > 
+       
+    {{client.state}}
+    
+
+
+       </td>
+       <td style="color:black" class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
+      > 
+       
+  {{client.country}}
+    
+
+
+       </td>
+       <td style="color:black" class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
+      > 
+       
+  {{client.phone}}
+    
+
+
+       </td>
+       <td style="color:black" class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
+      > 
+       
+   {{client.email}}
+    
+
+
+       </td>
+       <td  class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
+       > 
+        
+       <button (click)="edit(client)" class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Edit</button>
+       <!-- <button (click)="edit(client)" type="button" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" data-hs-overlay="#hs-focus-management-modal"> -->
+        <!-- Open modal
+      </button> -->
+ 
+ 
+        </td>
+        <td  class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
+        > 
+         
+        <button (click)="deleteClient(client)" class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" >Delete</button>
+      
+  
+  
+         </td>
+    
+    </tr>
+</tbody>
+</table>
+<div *ngIf="editing" style="width:500px;">
+  <h2>Edit Client Details</h2>
+  <form (submit)="submit()">
+    <div style="display:flex; justify-content:space-between">
+     <label>FirstName:</label> 
+    <input [(ngModel)]="client.first_name" name="first_name" required style="height:40px; width:300px;">
+ 
+   
+    <label>LastName:</label> 
+    <input [(ngModel)]="client.last_name" name="last_name" required>
+   
+    <label>Address:</label> 
+    <input [(ngModel)]="client.address" name="address" required>
+ 
+    <label>Phone:</label>
+    <input [(ngModel)]="client.phone" name="phone" required>
+ 
+    <label>Email:</label>
+    <input [(ngModel)]="client.email" name="email" required>
+
+  </div>
+  <div style="display:flex; justify-content:space-between; margin-top:10px;">
+    <label>City:</label> 
+    <input [(ngModel)]="client.city" name="city" required>
+
+    <label>State:</label> 
+    <input [(ngModel)]="client.state" name="state" required>
+ 
+  <label>Country</label> 
+  <input [(ngModel)]="client.country" name="country" required>
+    <button style="margin-left:10px;" type="submit" class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Save</button>
+    <button  type="button" (click)="cancel()" class="py-2 mr-2 px-3 inline-flex justify-center disabled:bg-slate-400 disabled:cursor-not-allowed items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Cancel</button>
+  </div>
+  </form>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<app-pagination  [currentPage]="currentPage" [totalItems]="totalItems" (pageChanged)="onPageCh($event)"></app-pagination>
+</div>

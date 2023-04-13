@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import {LoginGuard} from  '../app/auth/login.guard'
+import {LoginGuard} from  './Authentification/login.guard'
 import { LoginComponent } from './load/login/login.component';
-import { GuardGuard } from './services/guard.guard';
+import { GuardGuard } from './Authentification/guard.guard';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+
 })
 export class AppComponent {
   constructor(private readonly router:Router,public loggedIn:LoginGuard,
@@ -17,20 +17,20 @@ export class AppComponent {
 
   title = 'training';
 
-  public logOut(){
+  // public logOut(){
 
-  const logOt = localStorage.getItem('access_token');
+  // const logOt = localStorage.getItem('access_token');
 
  
-  if (logOt) {
-    localStorage.removeItem('access_token');
-  }
+  // if (logOt) {
+  //   localStorage.removeItem('access_token');
+  // }
 
-  this.router.navigate([''])
-
-
+  // this.router.navigate([''])
 
 
-}
+
+
+
 
 }

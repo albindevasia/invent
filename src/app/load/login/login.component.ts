@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+ 
 })
 
 
@@ -45,7 +45,7 @@ this.http.post(url,body).subscribe((response:any)=>{
   // }
 
   if(response){
-    console.log(response)
+
     localStorage.setItem(
       'access_token',
       JSON.stringify(response.access_token)
