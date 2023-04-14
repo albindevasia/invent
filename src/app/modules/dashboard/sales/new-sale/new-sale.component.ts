@@ -309,27 +309,27 @@ export class NewSaleComponent implements OnInit {
 //   }
 
 
-searchClients: FormGroup = new FormGroup({
+public searchClients: FormGroup = new FormGroup({
   searchInput: new FormControl(''),
 });
-searchProducts: FormGroup = new FormGroup({
+public searchProducts: FormGroup = new FormGroup({
   searchInput: new FormControl(''),
 });
-salesForm: FormGroup = new FormGroup({
+public salesForm: FormGroup = new FormGroup({
   client_id: new FormControl(Validators.required),
   products: new FormArray([]),
 });
 
-searchingClients = false;
-searchingProducts = false;
+public searchingClients = false;
+public searchingProducts = false;
 
 
-searchClientsResult: any[] = [];
-selectedClient!: any;
-searchProdutsResult: any[] = [];
+public searchClientsResult: any[] = [];
+public selectedClient!: any;
+public searchProdutsResult: any[] = [];
 
-clientsList: any[] = [];
-productsList: any[] = [];
+public clientsList: any[] = [];
+public productsList: any[] = [];
 
 constructor(
   private http: SalesService,
@@ -342,22 +342,22 @@ constructor(
   private readonly route:ActivatedRoute,
 ) {}
 
-get selectedProducts(): FormArray {
+public get selectedProducts(): FormArray {
   return this.salesForm.get('products') as FormArray;
 }
-addClient(client: any) {
+public addClient(client: any) {
   this.salesForm.controls['client_id'].setValue(client.id);
   this.searchClientsResult = [];
   this.searchingClients = false;
   this.selectedClient = client;
 }
-addNewClientRedirect(){
+public addNewClientRedirect(){
     this.router.navigate(['/dashboard/clients'],{queryParams:{source:'newsale'}})
 }
 
 
 
-addProduct(product: any, quantity: string) {
+public addProduct(product: any, quantity: string) {
   if (Number(quantity) > product.stock) {
     this.toastr.error( 'Quantity should be less than stock');
     return;
@@ -376,7 +376,7 @@ addProduct(product: any, quantity: string) {
   
 }
 
-removeSelectedClient() {
+public removeSelectedClient() {
   this.selectedClient = '';
   this.searchClients.controls['searchInput'].setValue('');
   this.searchProducts.controls['searchInput'].setValue('');
@@ -385,25 +385,25 @@ removeSelectedClient() {
   this.searchingClients = true;
 }
 
-removeSelectedProducts(product_id: number) {
+public removeSelectedProducts(product_id: number) {
       const index = this.selectedProducts.controls.findIndex(  (x)   =>   x.get('id')?.value === product_id   );
       if (index >= 0) 
             this.selectedProducts.removeAt(index);
 }
-getTotalOrderQuantity(){
+public getTotalOrderQuantity(){
   let total =0;
   for (const product of this.selectedProducts.controls)
     total+=product.get('quantity')?.value;
   return total;
 }
-getTotalOrderPrice(){
+public getTotalOrderPrice(){
   let price=0;
   for(const product of this.selectedProducts.controls)
     price+=( product.get('price')?.value * product.get('quantity')?.value);
   return price;
 }
 
-confirmSale() {
+public confirmSale() {
   
   if (!this.salesForm.valid){
     for(let product  of this.selectedProducts.controls)
@@ -419,7 +419,7 @@ confirmSale() {
                                                     this.router.navigate(['dashboard/sales']);
                                                   });
 }
-onSearchClients(value:any){
+public onSearchClients(value:any){
   if (value == ''){
      this.searchClientsResult = [];
      this.searchingClients=false
@@ -439,7 +439,7 @@ onSearchClients(value:any){
           
     }
 }
-onSearchProducts(value:any){
+public onSearchProducts(value:any){
   if (value == ''){
      this.searchProdutsResult = [];
      this.searchingProducts=false;
@@ -462,7 +462,7 @@ onSearchProducts(value:any){
        
   }
 }
-resumeData(){
+public resumeData(){
   const previous_state =this.data.newSale_state;
   if(previous_state?.selectedClient || previous_state?.salesForm?.get('products')){
     this.salesForm=previous_state.salesForm;
@@ -473,7 +473,7 @@ resumeData(){
   
 
  }
-onQuickSale(params:{[source:string]:string}){
+public onQuickSale(params:{[source:string]:string}){
           if(params['quick_sale']){
             this.salesForm.reset();
             this.selectedClient='';

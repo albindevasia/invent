@@ -10,7 +10,7 @@ import { QuickService } from 'src/app/core/Http/Api/quicksale.service';
 @Component({
   selector: 'app-newquick',
   templateUrl: './newquick.component.html',
-  styleUrls: ['./newquick.component.scss']
+  
 })
 export class NewquickComponent {
 
@@ -22,39 +22,39 @@ export class NewquickComponent {
     private readonly router: Router,
     public readonly dataStorage:DataStorageService
   ) {}
-  searchProducts: FormGroup = new FormGroup({
+public  searchProducts: FormGroup = new FormGroup({
     searchInput: new FormControl(''),
   });
 
 
-  quickSaleForm: FormGroup = new FormGroup({
+public  quickSaleForm: FormGroup = new FormGroup({
     name: new FormControl('',Validators.required),
     products: new FormArray([],Validators.required),
   });
 
-  products_view:any[]=[];
+public  products_view:any[]=[];
 
-  searchingProducts = false;
+public  searchingProducts = false;
   
-  quickSaleName:string='';
-  searchProdutsResult: any[] = [];
+public  quickSaleName:string='';
+public  searchProdutsResult: any[] = [];
 
-  productsList: any[] = [];
+public  productsList: any[] = [];
 
  
 
-  get selectedProducts(): FormArray {
+public  get selectedProducts(): FormArray {
     return this.quickSaleForm.get('products') as FormArray;
   }
  
  
-  addQuickSaleName(quickSaleName:string){
+public  addQuickSaleName(quickSaleName:string){
     this.quickSaleName=quickSaleName
     this.quickSaleForm.get('name')?.setValue(quickSaleName);
   }
 
 
-  addProduct(product: any) {
+public  addProduct(product: any) {
     const id :FormControl = new FormControl(product.id)
     this.products_view.push({
                               id:product.id,
@@ -67,13 +67,13 @@ export class NewquickComponent {
     this.searchProdutsResult = this.searchProdutsResult.filter((obj) => obj.id !== product.id);
     
   }
-  removeQuickSaleName(){
+public  removeQuickSaleName(){
       this.quickSaleName='';
       this.quickSaleForm.get('name')?.reset();
   }
  
 
-  removeSelectedProducts(product_id: number) {
+public  removeSelectedProducts(product_id: number) {
         const index = this.selectedProducts.controls.findIndex(  (x)   =>   x.value === product_id   );
         if (index >= 0) 
               this.selectedProducts.removeAt(index);
@@ -83,7 +83,7 @@ export class NewquickComponent {
 
   
 
-  confirmSale() {
+public confirmSale() {
     
         if(!this.quickSaleForm.valid){
           this.toastr.error('Add name and products');
@@ -99,7 +99,7 @@ export class NewquickComponent {
                                                     });
   }
   
-  onSearchProducts(value:any){
+ public  onSearchProducts(value:any){
     if (value == ''){
        this.searchProdutsResult = [];
        this.searchingProducts=false;
@@ -122,7 +122,7 @@ export class NewquickComponent {
          
     }
   }
-  resumeData(){
+public  resumeData(){
     const previous_state =this.dataStorage.newSale_state;
     if(previous_state?.selectedClient || previous_state?.salesForm?.get('products')){
       this.quickSaleForm=previous_state.salesForm;
