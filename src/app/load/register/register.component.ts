@@ -26,14 +26,7 @@ public get controls(){
 }
 
 public register(){
-  // const url:string='https://63be80d8585bedcb36aecdeb.mockapi.io/user'
-
-  // this.http.post(url,this.registerForm.value).subscribe(response=>{
-  //   if(response){
-  //     this.router.navigate(['/login']);
-  //   }
-  // })
-
+  
  const Url:string='https://api-sales-app.josetovar.dev/users'
 
  

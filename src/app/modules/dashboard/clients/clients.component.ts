@@ -28,7 +28,7 @@ export class ClientsComponent implements OnInit{
 
    
   ) {}
-public url:string='https://api-sales-app.josetovar.dev/clients';
+// public url:string='https://api-sales-app.josetovar.dev/clients';
 public updateProductForm: FormGroup = new FormGroup({});
 public clients$!:Observable<any>;
 public clickEventSubscription:Subscription=this.subService.getClickEvent().subscribe(()=>{
@@ -45,7 +45,7 @@ this.route.queryParams.subscribe((params:{[source:string]:string})=>{
 
 }
 public getClient(){
-  this.clients$=this.http.get<IClient>(this.url)
+  this.clients$=this.clientService.addClient()
    
  this.clients$.subscribe((clients:any)=>{
     this.totalItems=clients.length;
@@ -68,7 +68,7 @@ public edit(client:any){
         `Client with ID:${this.client.id} has been Edited successfully.`
     
       );
-      // this.ngOnInit()
+     
    
     }
     this.editing=false;
@@ -79,7 +79,7 @@ public cancel(){
   this.toastr.info(`Client with ID:${this.client.id} has not been updated.`)
   this.editing=false;
 }
-public deleteClient(client: any) {
+public deleteClient(client:any) {
   this.http
     .delete(`https://api-sales-app.josetovar.dev/clients/${client.id}`)
     .subscribe({

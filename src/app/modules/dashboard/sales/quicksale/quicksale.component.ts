@@ -6,6 +6,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { QuickService } from '../../../../core/Http/Api/quicksale.service';
+import { ProductService } from 'src/app/core/Http/Api/products.service';
 
 
 @Component({
@@ -20,17 +21,18 @@ export class QuicksaleComponent {
     private readonly toastr: ToastrService,
     private readonly http: HttpClient,
     private readonly quickService:QuickService,
+    private readonly productService:ProductService,
     private readonly router:Router
   ){
 
   }
-  public productApi: string = 'https://api-sales-app.josetovar.dev/products';
-  public quickApi: string = 'https://api-sales-app.josetovar.dev/quick-sales';
+  // public productApi: string = 'https://api-sales-app.josetovar.dev/products';
+  // public quickApi: string = 'https://api-sales-app.josetovar.dev/quick-sales';
   public filteredProducts: any[] = [];
   public products$!: Observable<any>;
   ngOnInit(){
    this.getQuickSale();
-   this.products$=this.http.get(this.productApi);
+   this.products$=this.productService.getProducts();
     }
 
     getQuickSale(){

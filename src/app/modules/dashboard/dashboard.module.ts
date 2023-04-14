@@ -19,7 +19,7 @@ import { SaleTableComponent } from './sales/sale-table/sale-table.component';
 import { QuicksaleComponent } from './sales/quicksale/quicksale.component';
 import { ViewQuickComponent } from './sales/view-quick/view-quick.component';
 import { NewquickComponent } from './sales/newquick/newquick.component';
-
+import { ShareModule } from 'src/app/shared/shared.module';
 
 
 
@@ -31,21 +31,23 @@ import { NewquickComponent } from './sales/newquick/newquick.component';
     ProductsComponent,
     SalesComponent,
     SaleComponent,
-    PaginationComponent,
+  //  PaginationComponent,
+//  PagePipe,
     NewSaleComponent,
     OverviewComponent,
     SaleTableComponent,
     QuicksaleComponent,
    ViewQuickComponent,
    NewquickComponent,
-  
-    PagePipe
+
+ 
+   
   
    
   ],
   imports: [
   
-   
+   ShareModule,
     CommonModule,
    DashboardRoutingModule,
     ReactiveFormsModule,
@@ -58,7 +60,7 @@ import { NewquickComponent } from './sales/newquick/newquick.component';
   // ],
   // bootstrap: [AppComponent]
 exports:[
-  PagePipe
+  // PagePipe
 ]
 
 })

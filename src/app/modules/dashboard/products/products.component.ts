@@ -18,7 +18,7 @@ import { IProducts } from 'src/app/shared/interface';
   
 })
 export class ProductsComponent {
-  rowDisabled: boolean = true;
+  
   // editingUser: any;
   totalItems!: number;
   productEnabledControls: { [id: number]: FormControl } = {};
@@ -45,12 +45,12 @@ export class ProductsComponent {
     this.getProduct()
   }
 public getProduct(){
-  this.products$ = this.http.get<IProducts>(this.url);
+  this.products$ = this.productService.getProducts();
 
-  this.products$.subscribe((products: any[]) => {
+  this.products$.subscribe((products: IProducts[]) => {
     // this.products$=response;
     this.totalItems = products.length;
-    products.map((product: any) => {
+    products.map((product:any) => {
       this.updateProductForm.addControl(
         `${product.id}`,
         new FormGroup({
@@ -86,7 +86,7 @@ public getProduct(){
     return price;
   }
 
-  public setUpdatedValues(product: any): void {
+  public setUpdatedValues(product: IProducts): void {
     const { price } = this.updateProductForm.controls[product.id].value;
     const updatedValues = {
       ...product,
@@ -95,20 +95,20 @@ public getProduct(){
     };
     console.log(updatedValues);
 
-    this.productService.updateSingeProduct(updatedValues).subscribe((response: any) => {
+    this.productService.updateSingeProduct(updatedValues).subscribe((response) => {
       console.log(response);
 
       this.toastr.success('updated');
     });
   }
 
-  public setDisableValue(product: any): boolean {
+  public setDisableValue(product: IProducts): boolean {
     const { price, stock } = this.updateProductForm.controls[product.id].value;
 
     return price == product.price && stock == product.stock;
   }
 
-  public updateProductStatus(product: any, event: any) {
+  public updateProductStatus(product:IProducts, event: any) {
     const status = event.target.checked;
     if (event.target.checked == true) {
       this.updateProductForm.controls[product.id].get('price')?.enable();
@@ -116,7 +116,7 @@ public getProduct(){
 
       this.http
         .put(
-          `https://api-sales-app.josetovar.dev/product-status/${product.id}?status=${status}`,
+          `https://api-sales-app.josetovar.dev/products/status/${product.id}?status=${status}`,
           {}
         )
         .subscribe({
@@ -146,8 +146,8 @@ public getProduct(){
         .subscribe({
           next: (response) => {
             if (response) {
-              this.toastr.success(
-                `Product with ID:${product.id} has been activated`
+              this.toastr.error(
+                `Product with ID:${product.id} has been Deactivated`
               );
             }
           },
@@ -161,7 +161,7 @@ public getProduct(){
     }
   }
 
-  public deleteProduct(product: any) {
+  public deleteProduct(product: IProducts) {
     this.http
       .delete(`https://api-sales-app.josetovar.dev/products/${product.id}`)
       .subscribe({
@@ -184,7 +184,7 @@ public getProduct(){
 
   public setFilters(activeEvent: any): void {
     this.currentPage = 1;
-    this.products$ = this.http.get<any>(this.url).pipe(
+    this.products$ = this.productService.getProducts().pipe(
       map((products: any) => {
         this.totalItems = products.length;
         if (activeEvent.target.value) {
@@ -201,7 +201,7 @@ public getProduct(){
 
   public setStock(activeEvent: any): void {
     this.currentPage = 1;
-    this.products$ = this.http.get<any>(this.url).pipe(
+    this.products$ = this.productService.getProducts().pipe(
       map((products: any) => {
         this.totalItems = products.length;
         if (activeEvent.target.value)

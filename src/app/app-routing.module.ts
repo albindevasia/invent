@@ -5,7 +5,7 @@ import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { GuardGuard } from './Authentification/guard.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './load/login/login.component';
-import { RegisterComponent } from './reg/register/register.component';
+import { RegisterComponent } from './load/register/register.component';
 import { SimpleProductComponent } from './modules/dashboard/products/simple-product/simple-product.component';
 
 
@@ -40,8 +40,8 @@ const routes: Routes = [
   //   // canActivate:[GuardGuard]
   // },
   {
-    path:'reg',
-    loadChildren:()=>import('./reg/reg.module').then(m=>m.RegModule)
+    path:'register',
+    component:RegisterComponent
   },
   
 

@@ -10,7 +10,8 @@ import { SalesService } from '../../../../core/Http/Api/sales.service';
 import { QuickService } from '../../../../core/Http/Api/quicksale.service';
 import { ProductService } from '../../../../core/Http/Api/products.service';
 import { ClientService } from '../../../../core/Http/Api/clients.service';
-
+import { IProducts } from 'src/app/shared/interface';
+import { IClient } from 'src/app/shared/interface';
 @Component({
   selector: 'app-new-sale',
   templateUrl: './new-sale.component.html',
@@ -308,6 +309,16 @@ export class NewSaleComponent implements OnInit {
 //     this.router.navigate(['/dashboard/clients'],{queryParams:{source:'newsale'}})
 //   }
 
+constructor(
+  private http: SalesService,
+  private readonly quickService:QuickService,
+  private readonly productService:ProductService,
+  private readonly clientService:ClientService,
+  private toastr: ToastrService,
+  private router: Router,
+   public data:DataStorageService,
+  private readonly route:ActivatedRoute,
+) {}
 
 public searchClients: FormGroup = new FormGroup({
   searchInput: new FormControl(''),
@@ -331,21 +342,11 @@ public searchProdutsResult: any[] = [];
 public clientsList: any[] = [];
 public productsList: any[] = [];
 
-constructor(
-  private http: SalesService,
-  private readonly quickService:QuickService,
-  private readonly productService:ProductService,
-  private readonly clientService:ClientService,
-  private toastr: ToastrService,
-  private router: Router,
-   public data:DataStorageService,
-  private readonly route:ActivatedRoute,
-) {}
 
 public get selectedProducts(): FormArray {
   return this.salesForm.get('products') as FormArray;
 }
-public addClient(client: any) {
+public addClient(client: IClient) {
   this.salesForm.controls['client_id'].setValue(client.id);
   this.searchClientsResult = [];
   this.searchingClients = false;
@@ -357,7 +358,7 @@ public addNewClientRedirect(){
 
 
 
-public addProduct(product: any, quantity: string) {
+public addProduct(product: IProducts, quantity: string) {
   if (Number(quantity) > product.stock) {
     this.toastr.error( 'Quantity should be less than stock');
     return;

@@ -13,7 +13,7 @@ export class SaleTableComponent {
 constructor(
   private readonly salesService:SalesService
 ){}
-  // public saleApi: string = 'https://api-sales-app.josetovar.dev/sales';
+ 
   public editing = true;
   
   public sales$!: Observable<any>;
@@ -37,7 +37,7 @@ constructor(
   
   // totalPages!: number;
   
-  onSalePage(pageNumber: number) {
+public  onSalePage(pageNumber: number) {
     this.currentPage = pageNumber;
    
   }

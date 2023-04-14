@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 // import { DashboardComponent } from './lazy/dashboard/dashboard.component';
 import { LoginComponent } from './load/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RegisterComponent } from './reg/register/register.component';
+import { RegisterComponent } from './load/register/register.component';
 import {  HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { SimpleProductComponent } from './modules/dashboard/products/simple-product/simple-product.component';
@@ -37,7 +37,7 @@ import { NewquickComponent } from './modules/dashboard/sales/newquick/newquick.c
     AppComponent,
     // DashboardComponent,
     // LoginComponent,
-    // RegisterComponent,
+     RegisterComponent,
     HomeComponent,
     SimpleProductComponent,
     // NewquickComponent,

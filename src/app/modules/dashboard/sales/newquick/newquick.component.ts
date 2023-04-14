@@ -3,9 +3,10 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { DataStorageService } from '../../../../Authentification/data.service';
 import { Router } from '@angular/router';
-import { ApiService } from '../../../../services/api.service';
+
 import { ProductService } from '../../../../core/Http/Api/products.service';
 import { QuickService } from 'src/app/core/Http/Api/quicksale.service';
+import { IProducts } from 'src/app/shared/interface';
 
 @Component({
   selector: 'app-newquick',
@@ -54,13 +55,14 @@ public  addQuickSaleName(quickSaleName:string){
   }
 
 
-public  addProduct(product: any) {
+public  addProduct(product:IProducts) {
     const id :FormControl = new FormControl(product.id)
     this.products_view.push({
-                              id:product.id,
-                              name:product.name,
-                              price:product.price,
-                              stock:product.stock
+                              // id:product.id,
+                              // name:product.name,
+                              // price:product.price,
+                              // stock:product.stock
+                              ...product
                               })
     
     this.selectedProducts.push(id);
