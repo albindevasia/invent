@@ -3,15 +3,15 @@
         <button (click)="onPageChange(1)"  class="w-10 h-10 bg-blue-500 text-white p-4 inline-flex items-center text-sm font-medium rounded-full cursor-pointer" [disabled]="currentPage === 1">
           <<</button>
         <button (click)="prevPage(currentPage -1)"    class="w-10 h-10 bg-blue-500 text-white p-4 inline-flex items-center text-sm font-medium rounded-full cursor-pointer" [disabled]="currentPage === 1" >
-          prev</button>
-        <button *ngFor="let pageNumber of pages" (click)="onPageChange(pageNumber)" [class.active]="pageNumber === currentPage" 
-          class="w-10 h-10 bg-blue-500 text-white p-4 inline-flex items-center text-sm font-medium rounded-full cursor-pointer  active:bg-red-500  active:text-blue-500 active:border-dark-500">
+          <</button>
+        <button *ngFor="let pageNumber of pages" (click)="onPageChange(pageNumber)" [class.active]="pageNumber === currentPage " 
+          class="w-10 h-10 bg-blue-500 text-white p-4 inline-flex items-center text-sm font-medium rounded-full cursor-pointer  active:bg-red-500  active:text-blue-500 active:border-dark-500 ">
           {{ pageNumber }}
         </button>
         
 
         <button (click)="nextPage(currentPage +1)"   class="w-10 h-10 bg-blue-500 text-white p-4 inline-flex items-center text-sm font-medium rounded-full cursor-pointer" [disabled]="currentPage === totalPages">
-          Next</button>
+          ></button>
         <button (click)="onPageChange(totalPages)"  class="w-10 h-10 bg-blue-500 text-white p-4 inline-flex items-center text-sm font-medium rounded-full cursor-pointer"  [disabled]="currentPage === totalPages">
           >>
         </button>
@@ -20,19 +20,19 @@
   </nav>
    <style>
     button.active {
-      background-color: rgb(57, 172, 115);
+      background-color: rgb(170, 172, 57);
      
     }
   </style>  
             
   <!-- <nav class="flex items-center space-x-2">
-    <button (click)="prevPage(currentPage -1)"  class="text-gray-400 hover:text-blue-600 p-4 inline-flex items-center gap-2 rounded-md pointer-events-none" [disabled]="currentPage === 1" >
+    <button (click)="prevPage(currentPage -1)" class="text-gray-400 hover:text-blue-600 p-4 inline-flex items-center gap-2 rounded-md pointer-events-none" href="#">
       <span aria-hidden="true">«</span>
       <span>Previous</span>
     </button>
-    <button *ngFor="let pageNumber of pages" (click)="onPageChange(pageNumber)" [class.active]="pageNumber === currentPage" class="w-10 h-10 bg-blue-500 text-white p-4 inline-flex items-center text-sm font-medium rounded-full"  aria-current="page">{{pageNumber}}</button>
+    <button *ngFor="let pageNumber of pages" (click)="onPageChange(pageNumber)" [class.active]="pageNumber === currentPage " class="w-10 h-10 bg-blue-500 text-white p-4 inline-flex items-center text-sm font-medium rounded-full" href="#" aria-current="page"> {{ pageNumber }}</button>
 
-    <button (click)="nextPage(currentPage +1)" [disabled]="currentPage === totalPages" class="text-gray-500 hover:text-blue-600 p-4 inline-flex items-center gap-2 rounded-md" >
+    <button (click)="nextPage(currentPage +1)" class="text-gray-500 hover:text-blue-600 p-4 inline-flex items-center gap-2 rounded-md" href="#">
       <span>Next</span>
       <span aria-hidden="true">»</span>
     </button>

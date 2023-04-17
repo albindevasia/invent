@@ -310,7 +310,7 @@ export class NewSaleComponent implements OnInit {
 //   }
 
 constructor(
-  private http: SalesService,
+  private readonly http: SalesService,
   private readonly quickService:QuickService,
   private readonly productService:ProductService,
   private readonly clientService:ClientService,

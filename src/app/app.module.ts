@@ -22,6 +22,7 @@ import { QuicksaleComponent } from './modules/dashboard/sales/quicksale/quicksal
 import { SaleTableComponent } from './modules/dashboard/sales/sale-table/sale-table.component';
 import { ViewQuickComponent } from './modules/dashboard/sales/view-quick/view-quick.component';
 import { NewquickComponent } from './modules/dashboard/sales/newquick/newquick.component';
+import { UploadComponent } from './upload/upload.component';
 
 
 // import { SearchComponent } from './search/search.component';
@@ -40,6 +41,7 @@ import { NewquickComponent } from './modules/dashboard/sales/newquick/newquick.c
      RegisterComponent,
     HomeComponent,
     SimpleProductComponent,
+    UploadComponent,
     // NewquickComponent,
     // UseComponent,
     // ViewQuickComponent,
