@@ -4,7 +4,8 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@sales/*" :["src/app/components/sales/*"]
+      "@sales/*" :["src/app/components/sales/*"],
+      "@api*" :["src/app/core/Http/Api/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

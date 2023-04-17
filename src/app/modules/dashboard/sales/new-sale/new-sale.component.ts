@@ -6,14 +6,14 @@ import { ToastrService } from 'ngx-toastr';
 import { map, Observable } from 'rxjs';
 import { ApiService } from '../../../../services/api.service';
 import { DataStorageService } from '../../../../Authentification/data.service';
-import { SalesService } from '../../../../core/Http/Api/sales.service';
-import { QuickService } from '../../../../core/Http/Api/quicksale.service';
-import { ProductService } from '../../../../core/Http/Api/products.service';
-import { ClientService } from '../../../../core/Http/Api/clients.service';
+import { SalesService } from '@apisales.service';
+import { QuickService } from '@apiquicksale.service';
+import { ProductService } from '@apiproducts.service';
+import { ClientService } from '@apiclients.service';
 import { IProducts } from 'src/app/shared/interface';
 import { IClient } from 'src/app/shared/interface';
 @Component({
-  selector: 'app-new-sale',
+  selector: 'app-new-sale', 
   templateUrl: './new-sale.component.html',
 
 })

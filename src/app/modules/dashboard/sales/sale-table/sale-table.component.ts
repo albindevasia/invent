@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../../../services/api.service';
 import { Observable } from 'rxjs';
-import { SalesService } from '../../../../core/Http/Api/sales.service';
+import { SalesService } from '@apisales.service';
 
 @Component({
   selector: 'app-sale-table',

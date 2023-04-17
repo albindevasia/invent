@@ -5,8 +5,8 @@ import { Observable, map } from 'rxjs';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
-import { QuickService } from '../../../../core/Http/Api/quicksale.service';
-import { ProductService } from 'src/app/core/Http/Api/products.service';
+import { QuickService } from '@apiquicksale.service';
+import { ProductService } from '@apiproducts.service';
 
 
 @Component({

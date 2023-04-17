@@ -9,7 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { formatCurrency } from '@angular/common';
 import { ApiService } from '../../../services/api.service';
 import { SubjectService } from '../../../Authentification/sub.service';
-import { ProductService } from '../../../core/Http/Api/products.service';
+import { ProductService } from '@apiproducts.service';
 import { IProducts } from 'src/app/shared/interface';
 
 @Component({

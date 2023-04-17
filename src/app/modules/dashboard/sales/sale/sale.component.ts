@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ApiService } from '../../../../services/api.service';
-import { SalesService } from '../../../../core/Http/Api/sales.service';
+import { SalesService } from '@apisales.service';
 
 @Component({
   selector: 'app-sale',

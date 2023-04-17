@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ApiService } from '../../../../services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { QuickService } from '../../../../core/Http/Api/quicksale.service';
+import { QuickService } from '@apiquicksale.service';
 
 @Component({
   selector: 'app-view-quick',

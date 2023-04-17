@@ -7,7 +7,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { SubjectService } from 'src/app/Authentification/sub.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ClientService } from 'src/app/core/Http/Api/clients.service'; 
+import { ClientService } from '@apiclients.service'; 
 import { IClient } from 'src/app/shared/interface';
 
 

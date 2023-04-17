@@ -4,8 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { DataStorageService } from '../../../../Authentification/data.service';
 import { Router } from '@angular/router';
 
-import { ProductService } from '../../../../core/Http/Api/products.service';
-import { QuickService } from 'src/app/core/Http/Api/quicksale.service';
+import { ProductService } from '@apiproducts.service';
+import { QuickService } from '@apiquicksale.service';
 import { IProducts } from 'src/app/shared/interface';
 
 @Component({
