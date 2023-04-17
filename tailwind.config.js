@@ -15,7 +15,8 @@ module.exports = {
         "mart1":"url('/assets/mart1.jpeg')",
         "mart2":"url('/assets/mart2.jpeg')",
         "quicksale":"url('/assets/fear.jpeg')",
-        "saletable" :"url('/assets/dam.avif')"
+        "saletable" :"url('/assets/dam.avif')",
+        "home":"url('/assets/des.jpg')"
       }
     },
   },
