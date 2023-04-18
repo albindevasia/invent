@@ -7,7 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './load/login/login.component';
 import { RegisterComponent } from './load/register/register.component';
 import { SimpleProductComponent } from './modules/dashboard/products/simple-product/simple-product.component';
-import { UploadComponent } from './upload/upload.component';
+
 
 
 
@@ -51,10 +51,7 @@ const routes: Routes = [
     component:SimpleProductComponent
 
   },
-  {
-    path:'upload',
-    component:UploadComponent
-  }
+  
  
 ];
 

@@ -59,4 +59,22 @@ onPageCh(pageNumber: number) {
   this.currentPage = pageNumber;
  
 }
+editing=false;
+sale:any;
+public editQuick(sale:any){
+  this.sale=sale
+  this.editing=true;
+}
+public closeQuick(){
+  this.editing=false;
+
+}
+quickSaleId!:number;
+public productQuick(id:number){
+ this.quickService.getById(id).subscribe((quickSale:any)=>{
+  
+  console.log(quickSale)
+  
+})
+}
 }

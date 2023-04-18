@@ -282,9 +282,32 @@ public getProduct(){
 
   totalPages!: number;
 
-  onPageChanged(pageNumber: number) {
+public  onPageChanged(pageNumber: number) {
     this.currentPage = pageNumber;
   }
+
+public  name!:string;
+public  file:any;
+  
+ public   getName(name:string){
+  this.name=name;
+    }
+ public  getFile(event:any){
+    this.file=event.target.files[0];
+    console.log('file',this.file);
+  }
+  
+public  submitData(){
+    let formData=new FormData();
+    formData.set('name',this.name)
+    formData.set('file',this.file)
+  
+  this.http.post('localhost/3400',formData).subscribe(res=>{
+    
+  })
+  }
+
+
 }
 
 

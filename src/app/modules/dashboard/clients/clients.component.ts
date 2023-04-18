@@ -178,4 +178,24 @@ client.email.toLowerCase().includes(searchValueLowercase);
   
 
 }
+public name!:string;
+public file:any;
+
+public getName(name:string){
+this.name=name;
+  }
+public getFile(event:any){
+  this.file=event.target.files[0];
+  console.log('file',this.file);
+}
+
+public submitData(){
+  let formData=new FormData();
+  formData.set('name',this.name)
+  formData.set('file',this.file)
+
+this.http.post('',formData).subscribe(res=>{
+  
+})
+}
 }
