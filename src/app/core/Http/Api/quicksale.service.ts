@@ -18,4 +18,10 @@ export class QuickService{
         public createQuickSale(quick_sale:any){
             return this.http.post(`${this.quickApi}`,quick_sale)
           }
+
+          public updateQuick(sale:any){
+            return this.http.put(`${this.quickApi}`,sale)
+          }
+
+          
 }

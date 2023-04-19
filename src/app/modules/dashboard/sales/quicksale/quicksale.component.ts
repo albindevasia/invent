@@ -77,4 +77,29 @@ public productQuick(id:number){
   
 })
 }
+
+
+
+public quickDelete(quick_sale_id:number){
+  this.http.delete(`https://api-sales-app.josetovar.dev/quick-sales/${quick_sale_id}`)
+  .subscribe({
+    next:(response)=>{
+this.toastr.success(
+  `QuickSale with ID:${quick_sale_id} has been deleted successfully`
+);
+this.getQuickSale()
+    },
+    error:(error)=>{
+      this.toastr.error(`QuickSale with ID:${quick_sale_id}`)
+    }
+  })
+}
+
+getNavigateBy(id:number){
+  this.router.navigate(['dashboard/sales/newQuick'],{queryParams:{quick_sale:id}})
+
+}
+getNavigateNew(){
+  this.router.navigate(['dashboard/sales/newQuick'],{queryParams:{quickNew:'New'}})
+}
 }
