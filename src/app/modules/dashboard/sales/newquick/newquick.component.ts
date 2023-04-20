@@ -190,7 +190,7 @@ else{
   this.quickService.updateQuick(this.quickSaleForm.value).subscribe((res)=>{
     if (res) {
       this.toastr.success(
-         `Client  has been Edited successfully.`
+         `QuickSale  has been Edited successfully.`
       );
      
    this.router.navigateByUrl('/dashboard/sales/quicksale')
