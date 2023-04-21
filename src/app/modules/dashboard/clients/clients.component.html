@@ -7,10 +7,12 @@
   >
     AddNew +
   </button>
-  <div style="display:flex;flex-direction:column; margin-right:50px;" class="bg-red-200">
+  <div style="display:flex;flex-direction:column; margin-right:50px;" class="bg-red-200 ">
   <input class="bg-gray-200 h-[30px] border-red-500" type="text" (change)="getName(name.value)" #name placeholder="Enter Name of File ...."/><br />
 <input type="file" (change)="getFile($event)"><br />
+
 <input class="btn btn-primary bg-gray-600" [hidden]="!file" type="button" value="Upload file +">
+
 </div>
 </div>
 <div *ngIf="creating">

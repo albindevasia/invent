@@ -144,7 +144,7 @@ quickSale!:any
 
       this.searchingProducts = previous_state.searchingProducts;
     }
-  }
+}
   public newQuick(params: { [source: string]: string }){
 
    
@@ -159,13 +159,13 @@ quickSale!:any
     if (params['quick_sale']) {
       this.quickSaleForm.reset();
        this.selectedProducts.clear();
-      console.log(this.quickSaleForm.value);
+
       this.quickService
         .getById(Number(params['quick_sale']))
         .subscribe((quickSale: any) => {
           for (let product of quickSale.products) {
             this.addProduct(product);
-            console.log(product);
+          
             
     this.addQuickSaleName(quickSale.name);
       
@@ -173,7 +173,7 @@ quickSale!:any
 
          
           }
-          // console.log(this.salesForm.value)
+       
         });
     }
   }

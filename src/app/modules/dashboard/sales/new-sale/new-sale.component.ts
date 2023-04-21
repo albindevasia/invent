@@ -307,7 +307,7 @@ export class NewSaleComponent implements OnInit {
 
 //   clientForward(){
 //     this.router.navigate(['/dashboard/clients'],{queryParams:{source:'newsale'}})
-//   }
+//   }7
 
 constructor(
   private readonly http: SalesService,
@@ -364,6 +364,7 @@ public addProduct(product: IProducts, quantity: string) {
     return;
   }
   const productForm: FormGroup = new FormGroup({
+    
     id: new FormControl(product.id, Validators.required),
     name: new FormControl(product.name),
     price: new FormControl(product.price) ,

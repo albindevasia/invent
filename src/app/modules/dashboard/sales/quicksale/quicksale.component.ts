@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ApiService } from '../../../../services/api.service';
+
 import { Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -26,8 +26,7 @@ export class QuicksaleComponent {
   ){
 
   }
-  // public productApi: string = 'https://api-sales-app.josetovar.dev/products';
-  // public quickApi: string = 'https://api-sales-app.josetovar.dev/quick-sales';
+
   public filteredProducts: any[] = [];
   public products$!: Observable<any>;
   ngOnInit(){
@@ -70,13 +69,13 @@ public closeQuick(){
 
 }
 quickSaleId!:number;
-public productQuick(id:number){
- this.quickService.getById(id).subscribe((quickSale:any)=>{
+// public productQuick(id:number){
+//  this.quickService.getById(id).subscribe((quickSale:any)=>{
   
-  console.log(quickSale)
+//   console.log(quickSale)
   
-})
-}
+// })
+// }
 
 
 
