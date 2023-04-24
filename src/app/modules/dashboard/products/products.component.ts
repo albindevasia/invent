@@ -11,7 +11,7 @@ import { ApiService } from '../../../services/api.service';
 import { SubjectService } from '../../../Authentification/sub.service';
 import { ProductService } from '@apiproducts.service';
 import { IProducts } from 'src/app/shared/interface';
-
+import * as Papa from 'papaparse';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -286,12 +286,9 @@ public  onPageChanged(pageNumber: number) {
     this.currentPage = pageNumber;
   }
 
-public  name!:string;
 public  file:any;
   
- public   getName(name:string){
-  this.name=name;
-    }
+
  public  getFile(event:any){
     this.file=event.target.files[0];
     console.log('file',this.file);
@@ -299,14 +296,31 @@ public  file:any;
   
 public  submitData(){
     let formData=new FormData();
-    formData.set('name',this.name)
-    formData.set('file',this.file)
+ 
+    formData.append('csv',this.file,this.file.name)
   
-  this.http.post('localhost/3400',formData).subscribe(res=>{
-    
+  this.http.post('https://api-sales-app.josetovar.dev/products/import',formData).subscribe(res=>{
+    this.toastr.success('Product file uploaded successfully')
+    console.log(res)
+  
   })
   }
+  public downloadProductCsv():void {
+    this.productService.getProducts().subscribe((data:any) => {
 
+      const csvData = Papa.unparse(data);
+  
+  
+      const link = document.createElement('a');
+      link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvData));
+      link.setAttribute('download', 'productData.csv');
+  
+  
+      link.click();
+    }, error => {
+      console.error(error);
+    });
+  }
 
 }
 

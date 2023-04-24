@@ -7,11 +7,13 @@
   >
     AddNew +
   </button>
-  <div style="display:flex;flex-direction:column; margin-right:50px;" class="bg-red-200 ">
-  <input class="bg-gray-200 h-[30px] border-red-500" type="text" (change)="getName(name.value)" #name placeholder="Enter Name of File ...."/><br />
+ <button class="btn btn-primary mb-[5px]" (click)="downloadCsv()">Download</button>
+  
+  <div style="display:flex;flex-direction:column; margin-right:50px;" class="bg-pink-200" >
+  <!-- <input class="bg-gray-200 h-[30px] border-red-500" type="text" (change)="getName(name.value)" #name placeholder="Enter Name of File ...."/><br /> -->
 <input type="file" (change)="getFile($event)"><br />
 
-<input class="btn btn-primary bg-gray-600" [hidden]="!file" type="button" value="Upload file +">
+<input (click)="submitData()" class="btn btn-primary bg-gray-600" [hidden]="!file" type="button" value="Upload file +">
 
 </div>
 </div>
@@ -171,16 +173,16 @@
     </div>
   </div>
 </div>
-<div class=" bg-clients bg-cover font-thick">
-  <div class="flex flex-col">
+<div class=" bg-clients bg-cover font-thick w-[1350px] " style="background-size:cover; overflow-x:hidden">
+  <div class="flex flex-col " >
     <div class="-m-1.5">
       <!-- overflow-x-auto -->
       <div class="p-1.5 min-w-full inline-block align-middle">
         <div class="overflow-hidden">
           <!-- class="overflow-hidden" -->
+          <!-- class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 " -->
           <table
-            class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 "
-            style="background-size: cover"
+          class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 "
           >
             <thead>
               <tr>

@@ -58,6 +58,7 @@ onPageCh(pageNumber: number) {
   this.currentPage = pageNumber;
  
 }
+
 editing=false;
 sale:any;
 public editQuick(sale:any){
@@ -68,7 +69,7 @@ public closeQuick(){
   this.editing=false;
 
 }
-quickSaleId!:number;
+
 // public productQuick(id:number){
 //  this.quickService.getById(id).subscribe((quickSale:any)=>{
   

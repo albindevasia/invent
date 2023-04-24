@@ -7,16 +7,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '@apiproducts.service';
 import { QuickService } from '@apiquicksale.service';
 import { IProducts } from 'src/app/shared/interface';
-import { query } from '@angular/animations';
+
 
 @Component({
   selector: 'app-newquick',
   templateUrl: './newquick.component.html',
 })
 export class NewquickComponent {
-  mode!: string;
+public  mode!: string;
  
-  sale: any;
+public  sale: any;
 
   constructor(
     private readonly productService: ProductService,
@@ -30,7 +30,7 @@ export class NewquickComponent {
   public searchProducts: FormGroup = new FormGroup({
     searchInput: new FormControl(''),
   });
-quickSale!:any
+public quickSale!:any
 
   public quickSaleForm: FormGroup = new FormGroup({
   
@@ -53,7 +53,7 @@ quickSale!:any
   }
 
   public addQuickSaleName(quickSaleName: string) {
-    // this.mode = 'new';
+  
     this.quickSaleName = quickSaleName;
     this.quickSaleForm.get('name')?.setValue(quickSaleName);
   }

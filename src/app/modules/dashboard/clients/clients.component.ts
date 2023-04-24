@@ -9,7 +9,8 @@ import { SubjectService } from 'src/app/Authentification/sub.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientService } from '@apiclients.service'; 
 import { IClient } from 'src/app/shared/interface';
-
+import { DomSanitizer } from '@angular/platform-browser';
+import * as Papa from 'papaparse';
 
 @Component({
   selector: 'app-clients',
@@ -24,6 +25,7 @@ export class ClientsComponent implements OnInit{
     private readonly toastr:ToastrService,
     private readonly route:ActivatedRoute,
     private readonly router:Router,
+    private readonly sanitizer:DomSanitizer,
    @Inject(SubjectService) private readonly subService:SubjectService
 
    
@@ -178,12 +180,10 @@ client.email.toLowerCase().includes(searchValueLowercase);
   
 
 }
-public name!:string;
+
 public file:any;
 
-public getName(name:string){
-this.name=name;
-  }
+
 public getFile(event:any){
   this.file=event.target.files[0];
   console.log('file',this.file);
@@ -191,12 +191,31 @@ public getFile(event:any){
 
 public submitData(){
   let formData=new FormData();
-  formData.set('name',this.name)
-  formData.set('file',this.file)
 
-this.http.post('',formData).subscribe(res=>{
-  
+  formData.append('csv',this.file,this.file.name)
+console.log(formData)
+this.http.post('https://api-sales-app.josetovar.dev/clients/import',formData).subscribe(res=>{
+  this.toastr.success('Client file uploaded successfully')
+  console.log(res)
 })
+}
+
+
+public downloadCsv(): void {
+  this.clientService.addClient().subscribe((data:any) => {
+
+    const csvData = Papa.unparse(data);
+
+
+    const link = document.createElement('a');
+    link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvData));
+    link.setAttribute('download', 'clientData.csv');
+
+
+    link.click();
+  }, error => {
+    console.error(error);
+  });
 }
 
 }

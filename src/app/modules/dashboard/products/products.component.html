@@ -48,10 +48,11 @@
     (pageChanged)="onPageChanged($event)"
   ></app-pagination>
 </div>
+<button class="btn btn-success" (click)="downloadProductCsv()">Download</button>
   <div class="border-red-300 px-[10px] py-[10px] w-[40] bg-red-200 ">
-    <input class="bg-gray-200 h-[30px]" type="text" (change)="getName(name.value)" #name placeholder="Enter the File Name" /><br />
-  <input type="file" (change)="getFile($event)"><br />
-  <input class="btn btn-primary bg-gray-600" [hidden]="!file" type="button" value="Upload file">
+    <!-- <input class="bg-gray-200 h-[30px]" type="text" (change)="getName(name.value)" #name placeholder="Enter the File Name" /><br /> -->
+  <input type="file" (change)="getFile($event)" ><br />
+  <input (click)="submitData()" class="btn btn-primary bg-gray-600" [hidden]="!file" type="button" value="Upload file">
   
   </div>
 </div>
