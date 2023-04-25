@@ -7,8 +7,8 @@
       <div class="p-1.5 min-w-full inline-block align-middle">
         <div class="overflow-hidden">
         <div style="text-align:center;background-color:rgb(210, 224, 197)"> 
-          <div style="background-color:burlywood;height:50px;">
-          <h1 style="font-weight:800;font-size:larger;text-align:center;">Person Info</h1>
+          <div  class="bg-yellow-400 h-[50px]">
+          <h1 style="font-weight:800;font-size:larger;text-align:center;" >Person Info</h1>
         </div>
           <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
             <tbody>
@@ -17,36 +17,36 @@
             >
          
             
-             <td style="color:black"
-                class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200"
+             <td 
+                class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-gray-200  text-black"
               >
     
              <b>ID:</b> {{(sale$|async).id}}
               </td> 
-                <td style="color:black"
-                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
+                <td 
+                  class="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-200  text-black"
                 > 
                 
          <b> Name: </b>{{(sale$|async)?.client.first_name + " " + (sale$|async)?.client.last_name }}
       
                 </td>
-                <td style="color:black"
-                  class="px-6 py-4 whitespace-nowrap text-sm text-black-800 dark:text-black-200"
+                <td 
+                  class="px-6 py-4 whitespace-nowrap text-sm text-black-800 dark:text-black-200  text-black"
                 >
                 <b>Address:</b> {{ (sale$|async)?.client.address
                   }}
                 </td>
                
 
-                <td style="color:black"
-                class="px-6 py-4 whitespace-nowrap text-sm text-black-800 dark:text-black-200"
+                <td s
+                class="px-6 py-4 whitespace-nowrap text-sm text-black-800 dark:text-black-200 text-black"
               >
                <b>Created_at:</b> {{ (sale$|async)?.created_at | date}}
               </td>
                
                 
-              <td style="color:black"
-              class="px-6 py-4 whitespace-nowrap text-sm text-black-800 dark:text-black-200"
+              <td 
+              class="px-6 py-4 whitespace-nowrap text-sm text-black-800 dark:text-black-200  text-black"
             >
              <b>Total:</b> {{ (sale$|async)?.total |  currency:'USD'}}
             </td>
@@ -57,9 +57,9 @@
           </table>
           </div>
 
-          <div style="background-color:cornflowerblue; margin-top:50px;align-items:center">
-  <div style="background-color:coral;height:40px;">
-<h1 style="text-align:center;font-weight:900;font-size:larger">Order Info</h1>
+          <div  class="bg-blue-500 mt-[50px] align-baseline">
+  <div class="bg-orange-400 h-[40px]">
+<h1 style="text-align:center;font-weight:900;font-size:larger" >Order Info</h1>
   </div>
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
               <thead>

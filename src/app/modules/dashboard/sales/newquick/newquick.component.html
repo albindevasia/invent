@@ -1,5 +1,5 @@
 
-       <div style="display: flex;flex-direction: column; justify-content: space-around;align-items: center;">
+       <div  class="flex justify-around flex-auto">
           
           <div class="flex rounded-md shadow-sm mb-3" >
           
@@ -80,12 +80,12 @@
           </tbody>
         </table>
      
-      <div style="width: 50%;padding-top: 0.5em;">
+      <div class="w-[50%] px-[0.5rem]">
     
                 <div
                     *ngIf="quickSaleForm.controls['name'].value"
-                    class="bg-red-300 text-dark px-3 py-3 "
-                    style="text-align: center"
+                    class="bg-red-300 text-dark px-3 py-3 text-center"
+                  
                             >
                             <p>Challenge Name</p>
                 </div>
@@ -103,11 +103,11 @@
                 <!-- //////////////// products ///////////// -->
               
         <div
-          class="bg-blue-300 text-white px-3 py-3 mt-1"
-          style="text-align: center"
+          class="bg-blue-300 text-white px-3 py-3 mt-1 text-center"
+          
           *ngIf="selectedProducts.controls[0]"
         >
-          <p style="color:black">Products</p>
+          <p class="text-black">Products</p>
         </div>
           <table
           class="min-w-full "

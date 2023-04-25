@@ -257,7 +257,7 @@
       "
       
       >
-     <div style="display: flex;flex-direction: row; justify-content: space-around;">
+     <div  class="flex justify-between flex-row">
         <form>
         <div
         class="flex rounded-md shadow-sm mb-3"
@@ -378,7 +378,7 @@
       </table>
     </div>
     <!-- ///////// right part ////////////////////////////////// -->
-    <div style="width: 60%;padding-top: 0.5em;">
+    <div  class="w-[60%] px-[0.5rem]">
       <div
         class="bg-blue-300 text-white px-3 py-3 "
         style="text-align: center"
@@ -411,7 +411,7 @@
         style="text-align: center"
         *ngIf="selectedProducts.controls[0]"
       >
-        <!-- <p>Orders</p> -->
+        <p>Orders</p>
       </div>
       <form [formGroup]="salesForm">
         <table
@@ -424,7 +424,7 @@
             <td>ID: {{ product.value.id }}{{product.value.stock}}</td>
             <td>{{ product.value.name }}</td>
             <td >QTY: 
-              <input [ngClass]="{'border border-2 border-red-400':product.value.quantity > 1}" class=" rounded-lg" formControlName="quantity" type="number" />
+              <input [ngClass]="{'border-2 border-red-400':product.value.quantity > 1}" class=" rounded-lg" formControlName="quantity" type="number" />
             </td>
             <td>Sub Total: {{ (product.value.price*product.value.quantity) | currency }}</td>
             <td class="py-1">

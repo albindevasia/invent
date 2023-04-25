@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { Environment } from "src/Environment/environment";
 
 interface IProducts{
   id: number;
@@ -16,20 +17,20 @@ interface IProducts{
 export class ProductService{
     constructor(private readonly http:HttpClient){}
 
-    public productApi:string='https://api-sales-app.josetovar.dev/products'
+    // public productApi:string='https://api-sales-app.josetovar.dev/products'
 
     public getProducts(){
-        return this.http.get<IProducts>(`${this.productApi}`)
+        return this.http.get<IProducts>(`${Environment.api}/products`)
        }
 
        public getSingle(productId:number):any{
-        return this.http.get(`${this.productApi}/${productId}`);
+        return this.http.get(`${Environment.api}/products/${productId}`);
     }
     public updateSingeProduct(product: any) {
-        return this.http.put(`${this.productApi}`, product)
+        return this.http.put(`${Environment.api}/products`, product)
          
       }
       public createNew(product:any){
-        return this.http.post(`${this.productApi}`,product)
+        return this.http.post(`${Environment.api}/products`,product)
       }
 }

@@ -3,16 +3,16 @@
 <form [formGroup]="registerForm" (ngSubmit)="register()">
     <div class="max-w-[300px] mx-auto shadow-md p-6">
         <div>
-          <label style="color:black"
+          <label 
             for="inline-input-label-with-helper-text"
-            class="block text-sm font-medium mb-2 dark:text-white"
+            class="block text-sm font-medium mb-2 dark:text-white text-black"
             >First Name</label
           >
-          <input style="background-color:aliceblue;color:black"
+          <input 
             formControlName="first_name"
             type="text"
             id="inline-input-label-with-helper-text"
-            class="py-3 px-4 block w-full border border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+            class="py-3 px-4 block w-full border border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:text-gray-400 text-black"
             placeholder=""
             aria-describedby="hs-inline-input-helper-text"
           />
@@ -30,16 +30,16 @@
 
         
             <div>
-              <label style="color:black"
+              <label 
                 for="inline-input-label-with-helper-text"
-                class="block text-sm font-medium mb-2 dark:text-white"
+                class="block text-sm font-medium mb-2 dark:text-white text-black"
                 >Last Name</label
               >
-              <input style="background-color:aliceblue;color:black;"
+              <input 
                 formControlName="last_name"
                 type="text"
                 id="inline-input-label-with-helper-text"
-                class="py-3 px-4 block w-full border border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                class="py-3 px-4 block w-full border border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:text-gray-400 text-black"
                 placeholder=""
                 aria-describedby="hs-inline-input-helper-text"
               />
@@ -54,16 +54,16 @@
             </div>
 
             <div>
-                <label style="color:black"
+                <label 
                   for="inline-input-label-with-helper-text"
-                  class="block text-sm font-medium mb-2 dark:text-white"
+                  class="block text-sm font-medium mb-2 dark:text-white text-black"
                   >Email</label
                 >
-                <input style="background-color:aliceblue;color:black;"
+                <input 
                   formControlName="email"
                   type="email"
                   id="inline-input-label-with-helper-text"
-                  class="py-3 px-4 block w-full border border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                  class="py-3 px-4 block w-full border border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 text-black"
                   placeholder="you@gmail.com"
                   aria-describedby="hs-inline-input-helper-text"
                 />
@@ -78,16 +78,16 @@
               </div>
 
      <div>
-      <label style="color:black"
+      <label 
         for="inline-input-label-with-helper-text"
-        class="block text-sm font-medium mb-2 dark:text-white"
+        class="block text-sm font-medium mb-2 dark:text-white text-black"
         >Password</label
       >
-      <input style="background-color:aliceblue;color:black;"
+      <input 
         formControlName="password"
         type="password"
         id="inline-input-label-with-helper-text"
-        class="py-3 px-4 block w-full border border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+        class="py-3 px-4 block w-full border border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 text-black"
         placeholder="*********"
         aria-describedby="hs-inline-input-helper-text"
       />
@@ -114,9 +114,9 @@
    <button
    routerLink="../load/login"
    (click)="canCel()"
-     style="margin-left:30px;"
+     
    type="button"
-   class="my-8 py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
+   class="my-8 mx-7 py-3 px-4  inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800 "
  >
    Cancel
  </button>

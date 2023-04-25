@@ -17,4 +17,7 @@ export interface IClient{
     sku: string;
     stock: number;
   }
-  
+  export interface Ifile{
+    SkippedClients:number;
+    ImportedClients:number
+  }

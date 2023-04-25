@@ -10,7 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ClientService } from '@apiclients.service'; 
 import { IClient } from 'src/app/shared/interface';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Ifile } from 'src/app/shared/interface';
 import * as Papa from 'papaparse';
+import { Environment } from 'src/Environment/environment';
 
 @Component({
   selector: 'app-clients',
@@ -194,7 +196,7 @@ public submitData(){
 
   formData.append('csv',this.file,this.file.name)
 console.log(formData)
-this.http.post('https://api-sales-app.josetovar.dev/clients/import',formData).subscribe(res=>{
+this.http.post(`${Environment.api}/clients/import`,formData).subscribe((res)=>{
   this.toastr.success('Client file uploaded successfully')
   console.log(res)
 })

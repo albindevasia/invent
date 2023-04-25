@@ -12,6 +12,7 @@ import { SubjectService } from '../../../Authentification/sub.service';
 import { ProductService } from '@apiproducts.service';
 import { IProducts } from 'src/app/shared/interface';
 import * as Papa from 'papaparse';
+import { Environment } from 'src/Environment/environment';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -33,7 +34,7 @@ export class ProductsComponent {
     @Inject(SubjectService) private readonly subService:SubjectService
   ) {}
 
-  public url: string = 'https://api-sales-app.josetovar.dev/products';
+
   // public products$:any;
 
   public updateProductForm: FormGroup = new FormGroup({});
@@ -116,7 +117,7 @@ public getProduct(){
 
       this.http
         .put(
-          `https://api-sales-app.josetovar.dev/products/status/${product.id}?status=${status}`,
+          `${Environment.api}/products/status/${product.id}?status=${status}`,
           {}
         )
         .subscribe({
@@ -140,7 +141,7 @@ public getProduct(){
 
       this.http
         .put(
-          `https://api-sales-app.josetovar.dev/products/status/${product.id}?status=${status}`,
+          `${Environment.api}/products/status/${product.id}?status=${status}`,
           {}
         )
         .subscribe({
@@ -163,7 +164,7 @@ public getProduct(){
 
   public deleteProduct(product: IProducts) {
     this.http
-      .delete(`https://api-sales-app.josetovar.dev/products/${product.id}`)
+      .delete(`${Environment.api}/products/${product.id}`)
       .subscribe({
         next: (response) => {
       this.subService.sendClickEvent();
@@ -217,32 +218,7 @@ public getProduct(){
     );
   }
 
-  //   filterData(){
-  //     const active=this.selectedStatus;
-  //     const stock=this.selectedStock;
-
-  //     return this.products.filter((product:any)=>{
-  // if(active === ""){
-  //   return true;
-
-  // }else if(product.active.toString()===active){
-  //   if(stock === ""){
-  //     return true;
-  //   }else if (product.stock === stock){
-  //     return true;
-  //   }
-
-  // }
-  // return false;
-  //     })
-  //   }
-
-  // stockFilters:string[] = ["All", "0", "1"];
-  // activeStatusFilters:string[] = ["All", "true", "false"];
-
-  // selectedStockFilter:string = "All";
-  // selectedActiveStatusFilter:string = "All";
- creating=false;
+public creating=false;
  newProduct(){
   this.creating=true;
  }
@@ -299,7 +275,7 @@ public  submitData(){
  
     formData.append('csv',this.file,this.file.name)
   
-  this.http.post('https://api-sales-app.josetovar.dev/products/import',formData).subscribe(res=>{
+  this.http.post(`${Environment.api}/products/import`,formData).subscribe(res=>{
     this.toastr.success('Product file uploaded successfully')
     console.log(res)
   

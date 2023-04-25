@@ -41,7 +41,7 @@
   >
     ADDNEW
   </button>
-  <div style="display:flex;justify-content:space-between">
+  <div class="flex justify-between">
 <div>
   <app-pagination
     [products$]="products$"
@@ -69,45 +69,45 @@
                   <tr>
                     <th
                       scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase bg-blue-gray-100 text-black"
+                      class="px-6 py-3 text-left text-xs font-medium uppercase bg-blue-gray-100 text-black"
                     >
                       Name
                     </th>
                     <th
                       scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase bg-blue-gray-100 text-black"
+                      class="px-6 py-3 text-left text-xs font-medium uppercase bg-blue-gray-100 text-black"
                     >
                       Price
                     </th>
                     <th
                       scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase bg-blue-gray-100 text-black"
+                      class="px-6 py-3 text-left text-xs font-medium uppercase bg-blue-gray-100 text-black"
                     >
                       SKU
                     </th>
                     <th
                       scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase bg-blue-gray-100 text-black"
+                      class="px-6 py-3 text-left text-xs font-medium uppercase bg-blue-gray-100 text-black"
                     >
                       Stock
                     </th>
 
                     <th
                       scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase bg-blue-gray-100 text-black"
+                      class="px-6 py-3 text-left text-xs font-medium uppercase bg-blue-gray-100 text-black"
                     >
                       Active
                     </th>
 
                     <th
                       scope="col"
-                      class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase bg-blue-gray-100 text-black"
+                      class="px-6 py-3 text-right text-xs font-medium uppercase bg-blue-gray-100 text-black"
                     >
                       Action
                     </th>
                     <th
                       scope="col"
-                      class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase bg-blue-gray-100 text-black"
+                      class="px-6 py-3 text-right text-xs font-medium uppercase bg-blue-gray-100 text-black"
                     >
                       Action
                     </th>
@@ -170,7 +170,7 @@
                         [checked]="product.active"
                         type="checkbox"
                         id="hs-basic-usage"
-                        class="relative w-[3.25rem] h-7 bg-gray-100 checked:bg-none checked:bg-blue-600 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-blue-600 focus:ring-blue-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-blue-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
+                        class="relative w-[3.25rem] h-7 bg-gray-100 checked:bg-none checked:bg-blue-600 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 ring-1 ring-transparent focus:border-blue-600 focus:ring-blue-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-blue-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
                       />
                       <label for="hs-basic-usage" class="sr-only">switch</label>
                     </td>
@@ -202,8 +202,19 @@
                   </tr>
 
                   <div *ngIf="creating">
-                    <div class="modal-dialog mr-200px;" role="document">
-                      <div class="modal-content">
+                    <div
+                    id="hs-basic-modal"
+                    class="w-[300px] h-full fixed top-0 left-[100px] right-[200px] z-[60] overflow-x-hidden overflow-y-auto"
+                  >
+                    <div
+                      class="opacity-100 duration-500 transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto"
+                    >
+                      <div
+                        class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]"
+                      >
+                        <div
+                          class="flex justify-between items-center py-3 px-4 border-b dark:border-gray-700 bg-red-200"
+                        >
                         <form [formGroup]="newForm" (ngSubmit)="updateNew()">
                           <div class="modal-header">
                             <h4 class="modal-title" id="myModalLabel">
@@ -221,25 +232,19 @@
 
                           <div class="modal-body">
                             <div
-                              style="
-                                display: flex;
-                                justify-content: space-between;
-                                background-color: aquamarine;
-                              "
+                             
+                              class="px-4 bg-green-300"
                             >
                               <div class="form-group">
                                 <label for="name">Name</label>
                                 <input
-                                  class="text-black"
+                                  
                                   type="text"
                                   name="name"
                                   required
                                   formControlName="name"
-                                  class="dashboard-input"
-                                  style="
-                                    background-color: rgb(222, 226, 232);
-                                    color: black;
-                                  "
+                                  class="dashboard-input bg-[rgb(222, 226, 232)]" 
+                                  
                                 />
                               </div>
                               <div class="form-group">
@@ -251,11 +256,8 @@
                                   required
                                   placeholder=""
                                   formControlName="price"
-                                  class="dashboard-input"
-                                  style="
-                                    background-color: rgb(232, 235, 238);
-                                    color: black;
-                                  "
+                                  class="dashboard-input bg-[ rgb(222, 226, 232)]"
+                                
                                 />
                               </div>
                               <div class="form-group">
@@ -267,11 +269,8 @@
                                   required
                                   placeholder=""
                                   formControlName="sku"
-                                  class="dashboard-input"
-                                  style="
-                                    background-color: rgb(229, 233, 237);
-                                    color: black;
-                                  "
+                                  class="dashboard-input bg-[ rgb(222, 226, 232)]"
+                                
                                 />
                               </div>
 
@@ -284,11 +283,8 @@
                                   required
                                   placeholder=""
                                   formControlName="stock"
-                                  class="dashboard-input"
-                                  style="
-                                    background-color: rgb(222, 227, 233);
-                                    color: black;
-                                  "
+                                  class="dashboard-input bg-[ rgb(222, 226, 232)]"
+                                
                                 />
                               </div>
 
@@ -317,6 +313,8 @@
                             </button>
                           </div>
                         </form>
+                        </div>
+                      </div>
                       </div>
                     </div>
                   </div>

@@ -17,21 +17,21 @@
                 >
              
                 
-                 <td style="color:black"
-                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200"
+                 <td 
+                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-black dark:text-gray-200"
                   >
         
                  <b>ID:</b> {{sales.id}}
                   </td> 
-                    <td style="color:black"
-                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
+                    <td 
+                      class="px-6 py-4 whitespace-nowrap text-sm text-black dark:text-gray-200"
                     > 
                     
              <b> Name: </b>{{sales.name }}
           
                     </td>
-                    <td style="color:black"
-                      class="px-6 py-4 whitespace-nowrap text-sm text-black-800 dark:text-black-200"
+                    <td 
+                      class="px-6 py-4 whitespace-nowrap text-sm text-black dark:text-black-200"
                     >
                     <b>Products:</b> {{ sales.products.length
                       }}
@@ -49,8 +49,8 @@
               </table>
               </div>
     
-              <div style="background-color:cornflowerblue; margin-top:50px;align-items:center">
-      <div style="background-color:coral;height:40px;">
+              <div  class="bg-blue-500 mt-[50px] align-baseline">
+      <div  class="bg-orange-400 h-[40px]">
     <h1 style="text-align:center;font-weight:900;font-size:larger">Order Info</h1>
       </div>
                 <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
@@ -86,21 +86,21 @@
                       >
                    
                       
-                       <td style="color:black"
-                          class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200"
+                       <td 
+                          class="px-6 py-4 whitespace-nowrap text-sm font-medium text-black dark:text-gray-200"
                         >
               
                         {{product.id}}
                         </td> 
-                          <td style="color:black"
-                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"
+                          <td 
+                            class="px-6 py-4 whitespace-nowrap text-sm text-black dark:text-gray-200"
                           > 
                           
                    {{ product.name }}
                 
                           </td>
-                          <td style="color:black"
-                            class="px-6 py-4 whitespace-nowrap text-sm text-black-800 dark:text-black-200"
+                          <td 
+                            class="px-6 py-4 whitespace-nowrap text-sm text-black dark:text-black-200"
                           >
                            {{ product.price | currency:'USD'
                             }}
